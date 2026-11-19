@@ -264,18 +264,17 @@
       cursor: pointer;
     }
 
-    /* Completely still background: identical framing to Home hero background but clean (no cloud persistence) */
+    /* Completely still background: celestia_bg.webp with full-viewport cover framing & bottom-center alignment */
     .celestia-bg-container-still {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: calc(100vw * 1320 / 2048);
-      min-height: 100vh;
-      background-image: url('./assets/images/welcome_clean_bg.webp');
+      height: 100%;
+      background-image: url('./assets/images/celestia_bg.webp');
       background-size: cover;
-      background-position: center top;
-      transform: scale(1.0); /* Completely still */
+      background-position: center bottom;
+      transform: none; /* No zoom transforms or animations */
       z-index: 1;
     }
 
@@ -285,11 +284,10 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: calc(100vw * 1320 / 2048);
-      min-height: 100vh;
+      height: 100%;
       background-image: url('./assets/images/welcome_vignette.png');
       background-size: cover;
-      background-position: top center;
+      background-position: center bottom;
       mix-blend-mode: multiply;
       opacity: 0.96;
       z-index: 2;
@@ -400,6 +398,7 @@
       width: 100%;
       min-height: 100vh;
       overflow-y: visible;
+      overflow-x: hidden;
       background: #080c14;
     }
 
@@ -486,37 +485,38 @@
       width: 100%;
     }
 
-    /* SECTION 1: HERO SECTION WITH PERFECT 1:1 CELESTIA FRAMING & VOLUMETRIC CLOUDS */
+    /* SECTION 1: HERO SECTION WITH FULL-VIEWPORT COVER FRAMING MATCHING WELCOME */
     .hero-section {
       position: relative;
+      width: 100%;
+      height: 100vh;
       min-height: 100vh;
-      height: calc(100vw * 1320 / 2048);
       display: flex;
       flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
       text-align: center;
-      padding: clamp(5.5rem, 9.5vw, 9rem) 2rem 8rem 2rem;
-      overflow: hidden;
+      padding: clamp(4.5rem, 8vh, 6rem) 2rem 5rem 2rem;
+      overflow: visible; /* Allows cloud transition overlay to extend across the boundary into Travelers */
       background-color: #ffe6cd; /* Exact peach background matching Travelers section */
     }
 
-    /* Hero Background Container: Reuses welcome_clean_bg.webp identically matching Welcome screen */
+    /* Hero Background Container: Uses celestia_bg.webp with identical full-viewport cover & bottom-center alignment */
     .hero-bg-zoom {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('./assets/images/welcome_clean_bg.webp');
+      background-image: url('./assets/images/celestia_bg.webp');
       background-size: cover;
-      background-position: center top;
-      transform: scale(1.0);
+      background-position: center bottom;
+      transform: none; /* No zoom transforms or animations */
       z-index: 1;
     }
 
     #slide-3.active .hero-bg-zoom {
-      transform: scale(1.0); /* Completely still, identical to Welcome background */
+      transform: none; /* Completely still, identical to Welcome background */
     }
 
     /* Subtle top sky vignette only - leaves clouds 100% pure, radiant peach */
@@ -570,24 +570,27 @@
       text-align: center;
     }
 
-    /* Clouds transition layer on Home hero (flawless peach clouds framing walkway) */
+    /* Isolated cloud overlay as-is: full uncropped height (calc(100vw * 845 / 2095)) so 0% is cut off at the top */
     .hero-clouds-bottom {
       position: absolute;
-      top: 0;
+      bottom: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      background-image: url('./assets/images/hero_clouds_layer.webp');
-      background-size: cover;
-      background-position: center top;
+      height: calc(100vw * 845 / 2095);
+      min-height: 380px;
+      background-image: url('./assets/images/clouds_hero.png');
+      background-size: 100% 100%;
+      background-position: center bottom;
+      background-repeat: no-repeat;
       pointer-events: none;
-      z-index: 3;
+      z-index: 5;
+      transform: translateY(22%); /* 78% on Home page, 22% extending into Travelers as a transition */
     }
 
-    /* Scroll Down Indicator - Pinned to the stone walkway landing framed by clouds */
+    /* Scroll Down Indicator - Pinned to bottom of Home hero */
     .scroll-down-btn {
       position: absolute;
-      top: clamp(480px, calc(100vw * 940 / 2048), calc(100% - 4.5rem));
+      bottom: clamp(1.2rem, 3.5vh, 2.5rem);
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -634,7 +637,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      z-index: 6;
       overflow: hidden;
     }
 
@@ -646,7 +648,7 @@
       width: 100%;
       margin-bottom: clamp(-2.2rem, -4.2vw, -3.2rem);
       position: relative;
-      z-index: 3;
+      z-index: 20; /* Always renders on top of the transition cloud overlay */
       padding: 0;
       overflow: visible;
     }
