@@ -1,0 +1,9 @@
+# Root-level temporary inspection files
+/*.png
+/*.py
+/*.pdf
+/scratch_*.png
+/test_*.png
+/crop_*.png
+/comp_*.png
+/ref_*.png
