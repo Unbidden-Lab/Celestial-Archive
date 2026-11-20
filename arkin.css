@@ -220,7 +220,7 @@ body.arkin-portfolio-body {
 /* About Me Hotspot Button */
 .hotspot-about-me {
   left: 35.830%;
-  top: 59.735%;
+  top: 59.835%;
   width: 28.366%;
   height: 3.150%;
   border-radius: 36px;
@@ -257,7 +257,7 @@ body.arkin-portfolio-body {
 /* Card 1: Resume Scanner */
 .hotspot-card-resume-scanner {
   left: 13.577%;
-  top: 69.147%;
+  top: 69.247%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -265,7 +265,7 @@ body.arkin-portfolio-body {
 /* Card 2: Hypertension Dashboard */
 .hotspot-card-hypertension {
   left: 38.263%;
-  top: 69.147%;
+  top: 69.247%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -273,7 +273,7 @@ body.arkin-portfolio-body {
 /* Card 3: Visual Aide Web Extension */
 .hotspot-card-visual-aide {
   left: 62.938%;
-  top: 69.147%;
+  top: 69.247%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -281,7 +281,7 @@ body.arkin-portfolio-body {
 /* Card 4: CyberEdge Industries (Centered) */
 .hotspot-card-cyberedge {
   left: 38.263%;
-  top: 78.224%;
+  top: 78.324%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -292,7 +292,7 @@ body.arkin-portfolio-body {
 /* Back Button (Bottom-Left Stylized Arrow) */
 .hotspot-back-btn {
   left: 6.032%;
-  top: 97.231%;
+  top: 97.331%;
   width: 3.953%;
   height: 1.774%;
   border-radius: 50%;
@@ -326,7 +326,7 @@ body.arkin-portfolio-body {
 /* Email Icon */
 .hotspot-footer-email {
   left: 82.186%;
-  top: 97.648%;
+  top: 97.748%;
   width: 2.108%;
   height: 0.928%;
 }
@@ -334,7 +334,7 @@ body.arkin-portfolio-body {
 /* LinkedIn Icon */
 .hotspot-footer-linkedin {
   left: 85.027%;
-  top: 97.648%;
+  top: 97.748%;
   width: 2.118%;
   height: 0.936%;
 }
@@ -342,7 +342,7 @@ body.arkin-portfolio-body {
 /* GitHub Icon */
 .hotspot-footer-github {
   left: 87.897%;
-  top: 97.648%;
+  top: 97.748%;
   width: 2.118%;
   height: 0.936%;
 }
