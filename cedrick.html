@@ -61,7 +61,53 @@
 
   </main>
 
-  <!-- ==================== 3. PROJECT DETAIL MODAL ==================== -->
+  <!-- ==================== 3. ABOUT ME ARCHIVAL BOOK MODAL ==================== -->
+  <div class="about-me-modal-backdrop" id="about-me-modal" aria-hidden="true" role="dialog" aria-label="About John Cedrick Dela Corta Journal">
+    <div class="about-me-book-container">
+      <!-- Upper-Left Left-Pointing Arrow: Back Button -->
+      <button type="button" class="book-heatmap book-back-btn" id="book-back-btn" aria-label="Back to Portfolio" title="Back • Return to Portfolio"></button>
+      
+      <!-- Book Mockup Image -->
+      <picture>
+        <source srcset="./assets/cedrick/about_me_book.webp" type="image/webp">
+        <img src="./assets/cedrick/about_me_book.png" alt="John Cedrick Dela Corta • Inazuma Electro Archival Journal" class="about-me-book-image" loading="eager">
+      </picture>
+
+      <!-- Heatmaps / Hotspots Over the Book -->
+      <!-- Left Page: Inazuma Electro Portrait -->
+      <button type="button" class="book-heatmap book-heatmap-portrait" id="book-hotspot-portrait" aria-label="Inazuma Electro Portrait • John Cedrick Dela Corta" title="John Cedrick Dela Corta • Inazuma Electro Systems Architect"></button>
+
+      <!-- Left Page: Electro Element Badge -->
+      <button type="button" class="book-heatmap book-heatmap-electro" id="book-hotspot-electro" aria-label="Electro Vision" title="Inazuma Electro Vision • Element of Eternity & Systems Architecture"></button>
+
+      <!-- Right Page: Academic Affiliation • TUP-Manila -->
+      <a href="https://www.tup.edu.ph" target="_blank" rel="noopener noreferrer" class="book-heatmap book-heatmap-tup" id="book-hotspot-tup" aria-label="Technological University of the Philippines Manila" title="TUP-Manila • Technological University of the Philippines"></a>
+
+      <!-- Right Page Projects Mentioned in Bio -->
+      <!-- 1. Luntian Flower Shop -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-luntian" data-project="luntian" aria-label="Open Luntian Flower Shop Project Details" title="View Project • Luntian Flower Shop (Full-Stack E-Commerce)"></button>
+
+      <!-- 2. Otaku Shelf (Spans Line 4 & Line 5) -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-otaku-1" data-project="otaku-shelf" aria-label="Open Otaku Shelf Project Details" title="View Project • Otaku Shelf"></button>
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-otaku-2" data-project="otaku-shelf" aria-label="Open Otaku Shelf Project Details" title="View Project • Otaku Shelf"></button>
+
+      <!-- 3. Closed:Open -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-closed-open" data-project="closed-open" aria-label="Open Closed;Open Project Details" title="View Project • Closed;Open (Narrative Game)"></button>
+
+      <!-- 4. PH Maternal Health Dashboard (Spans Line 5 & Line 6) -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-maternal-1" data-project="maternal-health" aria-label="Open PH Maternal Health Dashboard Details" title="View Project • PH Maternal Health Dashboard"></button>
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-maternal-2" data-project="maternal-health" aria-label="Open PH Maternal Health Dashboard Details" title="View Project • PH Maternal Health Dashboard"></button>
+
+      <!-- 5. Visual Aide -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-visual-aide" data-project="visual-aide" aria-label="Open Visual Aide Web Extension Details" title="View Project • Visual Aide Web Extension"></button>
+
+      <!-- On-Book Bookmark Clasp Close Area -->
+      <button type="button" class="book-heatmap book-heatmap-clasp" id="book-hotspot-clasp" aria-label="Close Journal Clasp" title="Close Journal"></button>
+
+    </div>
+  </div>
+
+  <!-- ==================== 4. PROJECT DETAIL MODAL ==================== -->
   <div class="project-modal-backdrop" id="project-modal" aria-hidden="true" role="dialog">
     <div class="project-modal-card">
       <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Modal">✕</button>
@@ -216,8 +262,76 @@
       document.body.style.overflow = '';
     }
 
-    // Attach click events to project cards and about me button
-    document.querySelectorAll('.hotspot-card, .hotspot-about-me').forEach(card => {
+    // ==================== ABOUT ME ARCHIVAL JOURNAL MODAL CONTROL ====================
+    const aboutMeModal = document.getElementById('about-me-modal');
+    const bookBackBtn = document.getElementById('book-back-btn');
+    const bookClasp = document.getElementById('book-hotspot-clasp');
+
+    function openAboutMeModal() {
+      playElectroChime();
+      if (aboutMeModal) {
+        aboutMeModal.classList.add('active');
+        aboutMeModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeAboutMeModal() {
+      if (aboutMeModal) {
+        aboutMeModal.classList.remove('active');
+        aboutMeModal.setAttribute('aria-hidden', 'true');
+        if (!modal.classList.contains('active')) {
+          document.body.style.overflow = '';
+        }
+      }
+    }
+
+    // Attach click event specifically to About Me button
+    const aboutMeHotspot = document.getElementById('hotspot-about-me');
+    if (aboutMeHotspot) {
+      aboutMeHotspot.addEventListener('click', (e) => {
+        e.preventDefault();
+        openAboutMeModal();
+      });
+    }
+
+    // Close About Me Modal events
+    if (bookBackBtn) {
+      bookBackBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        playElectroChime();
+        closeAboutMeModal();
+      });
+    }
+    if (bookClasp) bookClasp.addEventListener('click', closeAboutMeModal);
+    if (aboutMeModal) {
+      aboutMeModal.addEventListener('click', (e) => {
+        if (e.target === aboutMeModal) {
+          closeAboutMeModal();
+        }
+      });
+    }
+
+    // Book Heatmap Project Links (Clicking project inside book closes book and opens project modal)
+    document.querySelectorAll('.book-heatmap-project').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const projId = btn.getAttribute('data-project');
+        closeAboutMeModal();
+        setTimeout(() => {
+          openProjectModal(projId);
+        }, 160);
+      });
+    });
+
+    // Book Heatmap Portrait & Electro badge chime
+    document.querySelectorAll('.book-heatmap-portrait, .book-heatmap-electro').forEach(el => {
+      el.addEventListener('click', () => {
+        playElectroChime();
+      });
+    });
+
+    // Attach click events to project cards
+    document.querySelectorAll('.hotspot-card').forEach(card => {
       card.addEventListener('click', () => {
         const projId = card.getAttribute('data-project');
         openProjectModal(projId);
@@ -232,8 +346,13 @@
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeProjectModal();
+      if (e.key === 'Escape') {
+        if (modal.classList.contains('active')) {
+          closeProjectModal();
+        }
+        if (aboutMeModal && aboutMeModal.classList.contains('active')) {
+          closeAboutMeModal();
+        }
       }
     });
 
