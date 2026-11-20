@@ -380,9 +380,16 @@
       });
     }
 
+    try {
+      sessionStorage.setItem('celestial_archive_visited', 'true');
+    } catch (e) {}
+
     // Navigation and Social audio chime on click
     document.querySelectorAll('.nav-link, .nav-brand, .hotspot-social').forEach(el => {
       el.addEventListener('click', () => {
+        try {
+          sessionStorage.setItem('celestial_archive_visited', 'true');
+        } catch (e) {}
         playElectroChime();
       });
     });

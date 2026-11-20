@@ -8,7 +8,44 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cinzel+Decorative:wght@700&family=Marcellus&family=Montserrat:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   
+  <script>
+    /* Synchronously check if navigating to a specific section or returning to Celestial Archive */
+    (function() {
+      var hash = window.location.hash ? window.location.hash.toLowerCase() : '';
+      var hasVisited = false;
+      try {
+        hasVisited = sessionStorage.getItem('celestial_archive_visited') === 'true';
+      } catch (e) {}
+      var isTargetedNav = Boolean(hash && (hash.includes('home') || hash.includes('hero') || hash.includes('traveler') || hash.includes('contact') || hash.includes('slide-3')));
+      if (isTargetedNav || hasVisited) {
+        document.documentElement.classList.add('skip-loading-screen');
+      }
+    })();
+  </script>
+
   <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    /* Instant switch to Slide 3 when returning from portfolio pages or with section hash */
+    html.skip-loading-screen #slide-1,
+    html.skip-loading-screen #slide-2 {
+      display: none !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+    }
+    html.skip-loading-screen #slide-3 {
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      position: relative !important;
+      z-index: 2 !important;
+      transition: none !important;
+    }
+
     @font-face {
       font-family: 'HYWenHei';
       src: url('./assets/fonts/HYWenHei.ttf') format('truetype');
@@ -1530,6 +1567,7 @@
 
     <!-- 1. HERO SECTION -->
     <div class="hero-section" id="hero">
+      <span id="home" style="position: absolute; top: 0; left: 0; width: 0; height: 0; pointer-events: none;" aria-hidden="true"></span>
       <div class="hero-bg-zoom"></div>
       <div class="hero-vignette"></div>
 
@@ -1891,6 +1929,10 @@
 
     /* Switch Active Slide (Simple crossfade with no flashbang) */
     function switchSlide(slideId, withFlash = false) {
+      if (slideId === 'slide-1') {
+        document.documentElement.classList.remove('skip-loading-screen');
+      }
+
       if (slideId === currentSlide && document.getElementById(slideId).classList.contains('active')) return;
 
       const performSwitch = () => {
@@ -1907,7 +1949,13 @@
         if (nextSlideEl) {
           nextSlideEl.classList.add('active');
           currentSlide = slideId;
-          window.scrollTo(0, 0);
+          if (slideId === 'slide-3') {
+            try {
+              sessionStorage.setItem('celestial_archive_visited', 'true');
+            } catch (e) {}
+          } else {
+            window.scrollTo(0, 0);
+          }
         }
 
         // Update HUD
@@ -2047,7 +2095,10 @@
       });
     });
 
-    document.getElementById('btn-replay-loading').addEventListener('click', startLoadingSequence);
+    document.getElementById('btn-replay-loading').addEventListener('click', () => {
+      document.documentElement.classList.remove('skip-loading-screen');
+      switchSlide('slide-1');
+    });
     document.getElementById('btn-skip-loading').addEventListener('click', () => switchSlide('slide-2', false));
 
     /* ==================== SLIDE 2 LOGIC ==================== */
@@ -2524,9 +2575,73 @@
     }
     animateParticles();
 
-    // Start loading sequence immediately on load
+    // Section navigation and routing from portfolio pages & direct anchors
+    function navigateToSection(hash, smooth = true) {
+      if (!hash) return;
+      let targetId = hash.replace(/^#/, '').toLowerCase();
+      if (targetId === 'home') targetId = 'hero';
+      if (targetId === 'traveler') targetId = 'travelers';
+
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        const navHeight = 75;
+        const targetPos = targetEl.getBoundingClientRect().top + window.scrollY - (targetId === 'hero' ? 0 : navHeight);
+        window.scrollTo({
+          top: Math.max(0, targetPos),
+          behavior: smooth ? 'smooth' : 'auto'
+        });
+      }
+    }
+
+    function initPageRouting() {
+      const hash = window.location.hash ? window.location.hash.toLowerCase() : '';
+      let hasVisited = false;
+      try {
+        hasVisited = sessionStorage.getItem('celestial_archive_visited') === 'true';
+      } catch (e) {}
+      const isTargetedNav = Boolean(hash && (hash.includes('home') || hash.includes('hero') || hash.includes('traveler') || hash.includes('contact') || hash.includes('slide-3')));
+
+      if (isTargetedNav || hasVisited) {
+        if (fillAnimId) {
+          cancelAnimationFrame(fillAnimId);
+          fillAnimId = null;
+        }
+        if (fillTimer) {
+          clearTimeout(fillTimer);
+          fillTimer = null;
+        }
+
+        switchSlide('slide-3', false);
+        try {
+          sessionStorage.setItem('celestial_archive_visited', 'true');
+        } catch (e) {}
+
+        if (hash) {
+          setTimeout(() => {
+            navigateToSection(hash, false);
+          }, 30);
+          setTimeout(() => {
+            navigateToSection(hash, true);
+          }, 160);
+        }
+      } else {
+        startLoadingSequence();
+      }
+    }
+
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash ? window.location.hash.toLowerCase() : '';
+      if (hash && (hash.includes('home') || hash.includes('hero') || hash.includes('traveler') || hash.includes('contact'))) {
+        if (currentSlide !== 'slide-3') {
+          switchSlide('slide-3', false);
+        }
+        navigateToSection(hash, true);
+      }
+    });
+
+    // Start loading sequence or route to targeted section immediately on load
     window.addEventListener('DOMContentLoaded', () => {
-      startLoadingSequence();
+      initPageRouting();
     });
   </script>
 </body>
