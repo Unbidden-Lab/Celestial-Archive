@@ -476,3 +476,213 @@ body.arkin-portfolio-body {
   padding: 0.3rem 0.85rem;
   border-radius: 14px;
 }
+
+/* =======================================================
+   7. ABOUT ME ARCHIVAL BOOK MODAL & INTERACTIVE HEATMAPS
+   ======================================================= */
+.about-me-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(22, 6, 2, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.75rem, 2vw, 2rem);
+  z-index: 2500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.about-me-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.about-me-book-container {
+  position: relative;
+  width: min(78vw, calc(78vh * (1024 / 575)));
+  max-width: 1520px;
+  max-height: 84vh;
+  aspect-ratio: 1024 / 575;
+  filter: drop-shadow(0 25px 65px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 50px rgba(255, 111, 64, 0.35));
+  transform: translateY(25px) scale(0.95);
+  transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+}
+
+.about-me-modal-backdrop.active .about-me-book-container {
+  transform: translateY(0) scale(1);
+}
+
+.about-me-book-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Upper-Left Left-Pointing Arrow (Back Button) */
+.book-back-btn {
+  left: 11.8%;
+  top: 7.8%;
+  width: 7.5%;
+  height: 10.5%;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  z-index: 60;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.book-back-btn:hover {
+  background: radial-gradient(ellipse at center, rgba(255, 111, 64, 0.45) 0%, rgba(200, 50, 20, 0.15) 75%, transparent 100%);
+  border: 1.5px solid rgba(255, 170, 119, 0.95);
+  box-shadow: 0 0 24px rgba(255, 111, 64, 0.85), inset 0 0 12px rgba(255, 170, 119, 0.5);
+  transform: translateX(-4px) scale(1.08);
+}
+
+.book-back-btn:active {
+  transform: translateX(-1px) scale(0.96);
+}
+
+/* Base Heatmap Hotspot Styling */
+.book-heatmap {
+  position: absolute;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  background: rgba(255, 111, 64, 0.06);
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  z-index: 50;
+  border-radius: 4px;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+/* Text Heatmaps: Warm Natlan Pyro orange glow on hover, lift, and glowing underline */
+.book-heatmap-project,
+.book-heatmap-tup {
+  background: rgba(255, 111, 64, 0.08);
+  border-bottom: 1.5px dashed rgba(255, 170, 119, 0.45);
+}
+
+.book-heatmap-project:hover,
+.book-heatmap-project:focus-visible {
+  background: radial-gradient(ellipse at center, rgba(255, 111, 64, 0.4) 0%, rgba(200, 50, 20, 0.2) 80%, transparent 100%);
+  border-bottom: 2px solid rgba(255, 180, 128, 0.98);
+  box-shadow: 0 0 16px rgba(255, 111, 64, 0.8), 0 0 28px rgba(230, 70, 30, 0.45), inset 0 0 8px rgba(255, 170, 119, 0.4);
+  transform: translateY(-2px);
+}
+
+.book-heatmap-project:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Specific Heatmap Coordinates for Arkin */
+/* 1. Resume Scanner (Line 5) */
+.book-heatmap-resume-scanner {
+  left: 64.6%;
+  top: 54.4%;
+  width: 13.4%;
+  height: 4.5%;
+}
+
+/* 2. Hypertension Dashboard (Line 6 end & Line 7 start) */
+.book-heatmap-hypertension-1 {
+  left: 74.4%;
+  top: 57.5%;
+  width: 10.8%;
+  height: 4.5%;
+}
+
+.book-heatmap-hypertension-2 {
+  left: 54.5%;
+  top: 61.2%;
+  width: 9.0%;
+  height: 4.5%;
+}
+
+/* 3. Visual Aide (Line 8) */
+.book-heatmap-visual-aide {
+  left: 68.2%;
+  top: 64.3%;
+  width: 9.2%;
+  height: 4.5%;
+}
+
+/* TUP-Manila (Maroon / Gold academic heatmap) */
+.book-heatmap-tup {
+  left: 64.0%;
+  top: 43.8%;
+  width: 10.0%;
+  height: 4.5%;
+  border-bottom-color: rgba(220, 60, 60, 0.5);
+}
+
+.book-heatmap-tup:hover {
+  background: radial-gradient(ellipse at center, rgba(200, 30, 30, 0.35) 0%, rgba(140, 15, 15, 0.2) 80%, transparent 100%);
+  border-bottom: 2px solid rgba(255, 80, 80, 0.95);
+  box-shadow: 0 0 16px rgba(230, 50, 50, 0.75), inset 0 0 8px rgba(255, 100, 100, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Left Page: Natlan Pyro Sun-Crest Portrait Frame Heatmap */
+.book-heatmap-portrait {
+  left: 17.0%;
+  top: 15.0%;
+  width: 26.0%;
+  height: 47.0%;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.book-heatmap-portrait:hover {
+  box-shadow: 0 0 35px rgba(255, 111, 64, 0.85), inset 0 0 20px rgba(255, 170, 119, 0.55);
+  transform: scale(1.03);
+}
+
+/* Left Page: Pyro Element Badge Heatmap */
+.book-heatmap-pyro {
+  left: 28.5%;
+  top: 81.6%;
+  width: 4.8%;
+  height: 4.6%;
+  border-radius: 6px;
+  background: transparent;
+}
+
+.book-heatmap-pyro:hover {
+  background: rgba(255, 111, 64, 0.35);
+  box-shadow: 0 0 20px rgba(255, 170, 119, 0.95), inset 0 0 10px rgba(255, 200, 150, 0.65);
+  transform: scale(1.08);
+}
+
+/* Book Clasp Close Button */
+.book-heatmap-clasp {
+  left: 4.88%;
+  top: 59.13%;
+  width: 5.37%;
+  height: 15.65%;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  z-index: 60;
+  transition: all 0.25s ease;
+}
+
+.book-heatmap-clasp:hover {
+  background: radial-gradient(circle at center, rgba(255, 111, 64, 0.4) 0%, transparent 80%);
+  box-shadow: 0 0 20px rgba(255, 111, 64, 0.75);
+  transform: scale(1.05);
+}
+
