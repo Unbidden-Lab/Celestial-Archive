@@ -62,7 +62,51 @@
 
   </main>
 
-  <!-- ==================== 3. PROJECT DETAIL MODAL ==================== -->
+  <!-- ==================== 3. ABOUT ME ARCHIVAL BOOK MODAL ==================== -->
+  <div class="about-me-modal-backdrop" id="about-me-modal" aria-hidden="true" role="dialog" aria-label="About Nicholas Andrew Alcantara Journal">
+    <div class="about-me-book-container">
+      <button class="about-me-close-btn" id="about-me-close-btn" aria-label="Close Journal">✕</button>
+      
+      <!-- Book Mockup Image -->
+      <picture>
+        <source srcset="./assets/nicholas/about_me_book.webp" type="image/webp">
+        <img src="./assets/nicholas/about_me_book.png" alt="Nicholas Andrew Alcantara • Fontaine Hydro Archival Journal" class="about-me-book-image" loading="eager">
+      </picture>
+
+      <!-- Heatmaps / Hotspots Over the Book -->
+      <!-- Left Page: Hydro Vision Portrait -->
+      <button type="button" class="book-heatmap book-heatmap-portrait" id="book-hotspot-portrait" aria-label="Hydro Archon Portrait • Nicholas Andrew Alcantara" title="Nicholas Andrew Alcantara • Fontaine Hydro Archon"></button>
+
+      <!-- Left Page: Hydro Element Badge -->
+      <button type="button" class="book-heatmap book-heatmap-hydro" id="book-hotspot-hydro" aria-label="Hydro Vision" title="Fontaine Hydro Vision • The Element of Justice & Fluid Adaptability"></button>
+
+      <!-- Right Page: Academic Affiliation • TUP-Manila -->
+      <a href="https://www.tup.edu.ph" target="_blank" rel="noopener noreferrer" class="book-heatmap book-heatmap-tup" id="book-hotspot-tup" aria-label="Technological University of the Philippines Manila" title="TUP-Manila • Technological University of the Philippines"></a>
+
+      <!-- Right Page Projects Mentioned in Bio -->
+      <!-- 1. Closed:Open -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-closed-open" data-project="closed-open" aria-label="Open Closed;Open Project Details" title="View Project • Closed;Open (Narrative Game)"></button>
+
+      <!-- 2. Eclipse -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-eclipse" data-project="eclipse" aria-label="Open Eclipse Project Details" title="View Project • Eclipse (Global Game Jam 2026 Winner)"></button>
+
+      <!-- 3. Dengue Heatmap -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-dengue" data-project="dengue-heatmap" aria-label="Open Dengue Heatmap Project Details" title="View Project • Dengue Heatmap (Spatiotemporal Analysis)"></button>
+
+      <!-- 4. Monte Oro Atelier -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-monte-oro" data-project="monte-oro" aria-label="Open Monté Oro Atelier Project Details" title="View Project • Monté Oro Atelier (Luxury Brand)"></button>
+
+      <!-- 5. Visual Aide (Spans line 7 and line 8) -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-visual-aide-1" data-project="visual-aide" aria-label="Open Visual Aide Web Extension Details" title="View Project • Visual Aide Web Extension"></button>
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-visual-aide-2" data-project="visual-aide" aria-label="Open Visual Aide Web Extension Details" title="View Project • Visual Aide Web Extension"></button>
+
+      <!-- On-Book Bookmark Clasp Close Area -->
+      <button type="button" class="book-heatmap book-heatmap-clasp" id="book-hotspot-clasp" aria-label="Close Journal Clasp" title="Close Journal"></button>
+
+    </div>
+  </div>
+
+  <!-- ==================== 4. PROJECT DETAIL MODAL ==================== -->
   <div class="project-modal-backdrop" id="project-modal" aria-hidden="true" role="dialog">
     <div class="project-modal-card">
       <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Modal">✕</button>
@@ -212,8 +256,70 @@
       document.body.style.overflow = '';
     }
 
-    // Attach click events to project cards and about me button
-    document.querySelectorAll('.hotspot-card, .hotspot-about-me').forEach(card => {
+    // ==================== ABOUT ME ARCHIVAL JOURNAL MODAL CONTROL ====================
+    const aboutMeModal = document.getElementById('about-me-modal');
+    const aboutMeCloseBtn = document.getElementById('about-me-close-btn');
+    const bookClasp = document.getElementById('book-hotspot-clasp');
+
+    function openAboutMeModal() {
+      playHydroChime();
+      if (aboutMeModal) {
+        aboutMeModal.classList.add('active');
+        aboutMeModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeAboutMeModal() {
+      if (aboutMeModal) {
+        aboutMeModal.classList.remove('active');
+        aboutMeModal.setAttribute('aria-hidden', 'true');
+        if (!modal.classList.contains('active')) {
+          document.body.style.overflow = '';
+        }
+      }
+    }
+
+    // Attach click event specifically to About Me button
+    const aboutMeHotspot = document.getElementById('hotspot-about-me');
+    if (aboutMeHotspot) {
+      aboutMeHotspot.addEventListener('click', (e) => {
+        e.preventDefault();
+        openAboutMeModal();
+      });
+    }
+
+    // Close About Me Modal events
+    if (aboutMeCloseBtn) aboutMeCloseBtn.addEventListener('click', closeAboutMeModal);
+    if (bookClasp) bookClasp.addEventListener('click', closeAboutMeModal);
+    if (aboutMeModal) {
+      aboutMeModal.addEventListener('click', (e) => {
+        if (e.target === aboutMeModal) {
+          closeAboutMeModal();
+        }
+      });
+    }
+
+    // Book Heatmap Project Links (Clicking project inside book closes book and opens project modal)
+    document.querySelectorAll('.book-heatmap-project').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const projId = btn.getAttribute('data-project');
+        closeAboutMeModal();
+        setTimeout(() => {
+          openProjectModal(projId);
+        }, 160);
+      });
+    });
+
+    // Book Heatmap Portrait & Hydro badge chime
+    document.querySelectorAll('.book-heatmap-portrait, .book-heatmap-hydro').forEach(el => {
+      el.addEventListener('click', () => {
+        playHydroChime();
+      });
+    });
+
+    // Attach click events to project cards
+    document.querySelectorAll('.hotspot-card').forEach(card => {
       card.addEventListener('click', () => {
         const projId = card.getAttribute('data-project');
         openProjectModal(projId);
@@ -228,8 +334,13 @@
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeProjectModal();
+      if (e.key === 'Escape') {
+        if (modal.classList.contains('active')) {
+          closeProjectModal();
+        }
+        if (aboutMeModal && aboutMeModal.classList.contains('active')) {
+          closeAboutMeModal();
+        }
       }
     });
 
