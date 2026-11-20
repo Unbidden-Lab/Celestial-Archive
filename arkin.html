@@ -40,7 +40,9 @@
       <img src="./assets/arkin/portfolio_mockup_hd.png" alt="Arkin Phoenix Jaromamay • Natlan Pyro Portfolio" class="portfolio-mockup-image" loading="eager" fetchpriority="high">
     </picture>
 
-    <!-- ==================== 1. INTERACTIVE PROJECT CARDS ==================== -->
+    <!-- ==================== 1. ABOUT ME & INTERACTIVE PROJECT CARDS ==================== -->
+    <button type="button" class="interactive-hotspot hotspot-about-me" id="hotspot-about-me" data-project="about-me" aria-label="View About Arkin Phoenix Jaromamay Details" title="About Me • Arkin Phoenix Jaromamay"></button>
+
     <button type="button" class="interactive-hotspot hotspot-card hotspot-card-resume-scanner" data-project="resume-scanner" aria-label="View Resume Scanner Details" title="Resume Scanner • AI Recruitment Statistics"></button>
     <button type="button" class="interactive-hotspot hotspot-card hotspot-card-hypertension" data-project="hypertension" aria-label="View Hypertension Dashboard Details" title="Hypertension Dashboard • Interactive Health Platform"></button>
     <button type="button" class="interactive-hotspot hotspot-card hotspot-card-visual-aide" data-project="visual-aide" aria-label="View Visual Aide Web Extension Details" title="Visual Aide Web Extension • Dyslexia Reading Assistant"></button>
@@ -111,6 +113,13 @@
         img: './assets/arkin/card_cyberedge.png',
         desc: 'A sleek, high-performance corporate landing experience and design system crafted for a forward-looking technological firm. Features responsive modular components, high-contrast cyber motifs, and optimized interactive layouts.',
         tech: ['HTML5', 'CSS3', 'JavaScript', 'Design Systems', 'Responsive Web Design', 'Figma Prototype']
+      },
+      'about-me': {
+        title: 'Arkin Phoenix Jaromamay',
+        tag: 'ARCHON\'S PROFILE • FULL-STACK & AI ENGINEER',
+        img: './assets/arkin/portrait_pyro.png',
+        desc: 'The blazing technical vanguard and AI innovator of Group 4. Architect of intelligent natural language processing engines, dynamic health monitoring platforms, and accessible user experiences. Blends deep-learning algorithms with fiery Natlan Pyro passion and clean engineering discipline.',
+        tech: ['Machine Learning', 'Python / FastAPI', 'Natural Language Processing', 'React / TypeScript', 'Healthcare Informatics', 'Accessibility (a11y)']
       }
     };
 
@@ -191,8 +200,8 @@
       document.body.style.overflow = '';
     }
 
-    // Attach click events to project cards
-    document.querySelectorAll('.hotspot-card').forEach(card => {
+    // Attach click events to project cards and About Me
+    document.querySelectorAll('.hotspot-card, .hotspot-about-me').forEach(card => {
       card.addEventListener('click', () => {
         const projId = card.getAttribute('data-project');
         openProjectModal(projId);
