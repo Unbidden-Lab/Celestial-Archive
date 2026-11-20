@@ -1,0 +1,441 @@
+/* =======================================================
+   ARKIN PHOENIX JAROMAMAY • PYRO THEME PORTFOLIO STYLES
+   Full-Bleed Viewport Presentation (Zero Side Margins)
+   with Fixed Overlaid Top Navbar & Interactive Natlan Footer
+   ======================================================= */
+
+@font-face {
+  font-family: 'HYWenHei';
+  src: url('./assets/fonts/HYWenHei.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --font-genshin: 'Cinzel', 'HYWenHei', Georgia, serif;
+  --font-serif: 'Crimson Pro', Georgia, serif;
+  --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --color-pyro: #ff6f40;
+  --color-pyro-deep: #160805;
+  --color-pyro-dark: #240c08;
+  --color-pyro-crimson: #d3381c;
+  --color-pyro-glow: rgba(255, 111, 64, 0.55);
+  --color-pyro-light: #ffaa77;
+  --color-gold: #f5ba22;
+  --color-cream: #f5f2ea;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-pyro-deep);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Fullscreen Body: 100% Bleed, Zero Side Margins */
+body.arkin-portfolio-body {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-pyro-deep);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =======================================================
+   1. FIXED OVERLAID TOP NAVIGATION BAR
+   ======================================================= */
+.genshin-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem clamp(1.2rem, 3.5vw, 3.5rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(22, 8, 5, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 111, 64, 0.25);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.genshin-navbar.scrolled {
+  padding: 0.75rem clamp(1.2rem, 3.5vw, 3.5rem);
+  background: rgba(16, 5, 3, 0.96);
+  border-bottom: 1px solid rgba(255, 111, 64, 0.45);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.75);
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.nav-logo-star {
+  height: clamp(28px, 2.5vw, 36px);
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.85));
+  transition: transform 0.3s ease;
+}
+
+.nav-brand:hover .nav-logo-star {
+  transform: scale(1.1) rotate(6deg);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.2rem, 3vw, 2.8rem);
+  list-style: none;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  font-family: var(--font-genshin);
+  font-size: clamp(0.92rem, 1.15vw, 1.05rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  position: relative;
+  padding: 0.3rem 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--color-pyro-light);
+  box-shadow: 0 0 8px var(--color-pyro-light);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-pyro-light);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* =======================================================
+   2. FULL-BLEED PORTFOLIO CONTAINER & MOCKUP IMAGE
+   ======================================================= */
+.portfolio-container {
+  position: relative;
+  width: 100%;
+  max-width: none; /* Full bleed: 100% viewport width */
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-pyro-deep);
+  overflow: hidden;
+  display: block;
+}
+
+/* High-Resolution Mockup Vector Image (Stretches Full Bleed) */
+.portfolio-mockup-image {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* =======================================================
+   3. INTERACTIVE HOTSPOTS BASE RULES
+   ======================================================= */
+.interactive-hotspot {
+  position: absolute;
+  display: block;
+  text-decoration: none;
+  cursor: pointer;
+  z-index: 50;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+/* Accessible touch target for mobile devices (WCAG 44x44px minimum) */
+.interactive-hotspot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 44px;
+  min-height: 44px;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+/* =======================================================
+   4. PROJECT CARD HOTSPOTS (3-1 STAGGERED GRID)
+   ======================================================= */
+.hotspot-card {
+  border-radius: 14px;
+}
+
+.hotspot-card:hover {
+  background: rgba(255, 111, 64, 0.16);
+  box-shadow: 0 0 24px rgba(255, 111, 64, 0.65), 0 0 45px rgba(255, 170, 119, 0.45), inset 0 0 16px rgba(255, 170, 119, 0.35);
+  transform: translateY(-5px) scale(1.02);
+}
+
+.hotspot-card:active {
+  transform: scale(0.98);
+}
+
+/* Card 1: Resume Scanner */
+.hotspot-card-resume-scanner {
+  left: 13.577%;
+  top: 69.347%;
+  width: 23.504%;
+  height: 8.505%;
+}
+
+/* Card 2: Hypertension Dashboard */
+.hotspot-card-hypertension {
+  left: 38.263%;
+  top: 69.347%;
+  width: 23.504%;
+  height: 8.505%;
+}
+
+/* Card 3: Visual Aide Web Extension */
+.hotspot-card-visual-aide {
+  left: 62.938%;
+  top: 69.347%;
+  width: 23.504%;
+  height: 8.505%;
+}
+
+/* Card 4: CyberEdge Industries (Centered) */
+.hotspot-card-cyberedge {
+  left: 38.263%;
+  top: 78.424%;
+  width: 23.504%;
+  height: 8.505%;
+}
+
+/* =======================================================
+   5. FOOTER HOTSPOTS (BACK BUTTON & SOCIAL LINKS)
+   ======================================================= */
+/* Back Button (Bottom-Left Stylized Arrow) */
+.hotspot-back-btn {
+  left: 5.661%;
+  top: 97.251%;
+  width: 4.685%;
+  height: 2.062%;
+  border-radius: 50%;
+}
+
+.hotspot-back-btn:hover {
+  background: rgba(255, 111, 64, 0.35);
+  box-shadow: 0 0 22px rgba(255, 170, 119, 0.85), 0 0 38px rgba(255, 111, 64, 0.55);
+  transform: scale(1.15);
+}
+
+.hotspot-back-btn:active {
+  transform: scale(0.92);
+}
+
+/* Social Icons Base */
+.hotspot-social {
+  border-radius: 50%;
+}
+
+.hotspot-social:hover {
+  background: rgba(255, 111, 64, 0.4);
+  box-shadow: 0 0 16px rgba(255, 170, 119, 0.85);
+  transform: scale(1.22);
+}
+
+.hotspot-social:active {
+  transform: scale(0.95);
+}
+
+/* Email Icon */
+.hotspot-footer-email {
+  left: 81.991%;
+  top: 97.723%;
+  width: 2.440%;
+  height: 1.117%;
+}
+
+/* LinkedIn Icon */
+.hotspot-footer-linkedin {
+  left: 84.919%;
+  top: 97.723%;
+  width: 2.440%;
+  height: 1.117%;
+}
+
+/* GitHub Icon */
+.hotspot-footer-github {
+  left: 87.750%;
+  top: 97.723%;
+  width: 2.440%;
+  height: 1.117%;
+}
+
+/* =======================================================
+   6. INTERACTIVE PROJECT DETAIL MODAL
+   ======================================================= */
+.project-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(16, 6, 4, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  z-index: 2000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s ease;
+}
+
+.project-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.project-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  background: linear-gradient(150deg, #28100a 0%, #150604 100%);
+  border: 2px solid rgba(255, 111, 64, 0.55);
+  border-radius: 16px;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.85), 0 0 35px rgba(255, 111, 64, 0.4);
+  padding: 2.4rem clamp(1.2rem, 3.5vw, 2.5rem);
+  color: #ffffff;
+  transform: translateY(25px) scale(0.95);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-modal-backdrop.active .project-modal-card {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 1.2rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.modal-close-btn:hover {
+  background: var(--color-pyro);
+  border-color: var(--color-pyro-light);
+  color: #120503;
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 0 10px var(--color-pyro-light);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  margin-bottom: 1.3rem;
+}
+
+.modal-card-preview {
+  width: 120px;
+  max-height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 111, 64, 0.4);
+  filter: drop-shadow(0 6px 16px rgba(255, 111, 64, 0.35));
+}
+
+.modal-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.modal-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-pyro-light);
+  letter-spacing: 0.08em;
+}
+
+.modal-title {
+  font-family: var(--font-genshin);
+  font-size: 1.55rem;
+  color: #ffffff;
+  margin: 0;
+}
+
+.modal-body {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1.5rem;
+}
+
+.modal-tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.tech-chip {
+  background: rgba(255, 111, 64, 0.2);
+  border: 1px solid rgba(255, 170, 119, 0.45);
+  color: #ffd8c8;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.3rem 0.85rem;
+  border-radius: 14px;
+}

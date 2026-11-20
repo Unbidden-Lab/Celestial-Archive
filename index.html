@@ -751,12 +751,25 @@
       }
     }
 
-    /* Individual Arched Traveler Card matching Image 1 */
-    .traveler-card {
+    /* =======================================================
+       TRAVELER CARD SLOT & OUTSIDE ELEMENTAL HOVER EFFECTS
+       (Subtle, Toned-Down Aura & Particles OUTSIDE the Card)
+       ======================================================= */
+    .traveler-card-slot {
       position: relative;
       width: clamp(125px, 19vw, 172px);
-      aspect-ratio: 161 / 524; /* Exact 1:3.25 ratio from Image 1 */
-      background-color: #4644af; /* Exact rich royal/indigo blue from Image 1 */
+      aspect-ratio: 161 / 524; /* Exact 1:3.25 ratio */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Individual Arched Traveler Card */
+    .traveler-card {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: #4644af; /* Exact rich royal/indigo blue */
       -webkit-mask-image: url('./assets/images/card_frame.png');
       mask-image: url('./assets/images/card_frame.png');
       -webkit-mask-size: 100% 100%;
@@ -770,13 +783,99 @@
       padding-bottom: clamp(1.8rem, 3.2vw, 2.8rem);
       cursor: pointer;
       overflow: hidden;
+      z-index: 2; /* Sits in front of the outside canvas: portrait is 100% un-obscured! */
       transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.35s ease;
-      filter: drop-shadow(0 10px 22px rgba(70, 68, 175, 0.22));
+      filter: drop-shadow(0 8px 18px rgba(70, 68, 175, 0.22));
     }
 
-    .traveler-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      filter: drop-shadow(0 16px 30px rgba(70, 68, 175, 0.35)) drop-shadow(0 0 18px var(--card-element-glow, rgba(255, 215, 0, 0.6)));
+    /* Toned-down elegant lift on hover */
+    .traveler-card-slot:hover .traveler-card {
+      transform: translateY(-8px) scale(1.02);
+    }
+
+    /* Outer Elemental Aura Canvas Container (STRICTLY OUTSIDE THE CARD) */
+    .card-outer-fx {
+      position: absolute;
+      top: -45px;
+      left: -45px;
+      right: -45px;
+      bottom: -25px;
+      pointer-events: none;
+      z-index: 1; /* Sits BEHIND the card: portrait is 100% un-obscured! */
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      overflow: visible;
+    }
+
+    .traveler-card-slot:hover .card-outer-fx {
+      opacity: 1;
+    }
+
+    .card-fx-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* ----------------------------------------------------
+       THICK ELEMENTAL BORDER LACED ALONG CARD CONTOUR
+       ---------------------------------------------------- */
+    .card-element-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 4; /* Over portrait, under badge and stars */
+      -webkit-mask-image: url('./assets/images/card_border_frame.png');
+      mask-image: url('./assets/images/card_border_frame.png');
+      -webkit-mask-size: 100% 100%;
+      mask-size: 100% 100%;
+      -webkit-mask-repeat: no-repeat;
+      mask-repeat: no-repeat;
+      background-color: var(--card-element-color, #ffd700);
+      opacity: 0.95;
+      transition: opacity 0.35s ease, filter 0.35s ease;
+    }
+
+    .traveler-card-slot:hover .card-element-border {
+      opacity: 1;
+      filter: drop-shadow(0 0 8px var(--card-element-color, #ffd700)) brightness(1.25);
+    }
+
+    /* ----------------------------------------------------
+       PRONOUNCED OUTER ELEMENTAL SILHOUETTE GLOWS
+       ---------------------------------------------------- */
+    /* 1. Pyro Card (Arkin) */
+    .traveler-card-slot:hover .card-pyro {
+      filter: drop-shadow(0 14px 28px rgba(70, 68, 175, 0.35))
+              drop-shadow(0 0 16px rgba(255, 80, 20, 0.95))
+              drop-shadow(0 -4px 28px rgba(255, 130, 20, 0.75));
+    }
+
+    /* 2. Geo Card (Montoya) */
+    .traveler-card-slot:hover .card-geo {
+      filter: drop-shadow(0 14px 28px rgba(70, 68, 175, 0.35))
+              drop-shadow(0 0 16px rgba(233, 170, 50, 0.95))
+              drop-shadow(0 -4px 28px rgba(255, 210, 90, 0.75));
+    }
+
+    /* 3. Hydro Card (Nicholas) */
+    .traveler-card-slot:hover .card-hydro {
+      filter: drop-shadow(0 14px 28px rgba(70, 68, 175, 0.35))
+              drop-shadow(0 0 16px rgba(20, 200, 245, 0.95))
+              drop-shadow(0 -4px 28px rgba(90, 230, 255, 0.75));
+    }
+
+    /* 4. Electro Card (Cedrick) */
+    .traveler-card-slot:hover .card-electro {
+      filter: drop-shadow(0 14px 28px rgba(70, 68, 175, 0.35))
+              drop-shadow(0 0 16px rgba(175, 90, 255, 0.95))
+              drop-shadow(0 -4px 28px rgba(215, 150, 255, 0.75));
     }
 
     .card-arch-top {
@@ -1393,56 +1492,80 @@
 
       <!-- 4 Arched Cards directly on warm peach background -->
       <div class="travelers-cards-wrapper">
-        <!-- Card 1: Hydro Traveler -->
-        <div class="traveler-card" data-traveler="0" style="--card-element-color: var(--color-hydro); --card-element-glow: rgba(25, 211, 245, 0.5);">
-          <div class="card-arch-top"></div>
-          <div class="card-avatar-wrapper">
-            <!-- Arched background -->
+        <!-- Card 1: Hydro Traveler (Nicholas Andrew Alcantara) -->
+        <div class="traveler-card-slot" data-traveler="0">
+          <div class="card-outer-fx" aria-hidden="true">
+            <canvas class="card-fx-canvas"></canvas>
           </div>
-          <div class="card-shade"></div>
-          <div class="card-element-badge">
-            <img src="./assets/images/elements/hydro_active.png" class="badge-icon-img" alt="Hydro Vision">
-          </div>
-          <div class="card-stars">★★★★★</div>
+          <a href="nicholas.html" class="traveler-card card-hydro" data-traveler="0" style="--card-element-color: var(--color-hydro); --card-element-glow: rgba(25, 211, 245, 0.45); text-decoration: none; color: inherit;" title="View Nicholas Andrew Alcantara's Portfolio">
+            <div class="card-arch-top"></div>
+            <div class="card-avatar-wrapper">
+              <!-- Arched background -->
+            </div>
+            <div class="card-shade"></div>
+            <div class="card-element-border" aria-hidden="true"></div>
+            <div class="card-element-badge">
+              <img src="./assets/images/elements/hydro_active.png" class="badge-icon-img" alt="Hydro Vision">
+            </div>
+            <div class="card-stars">★★★★★</div>
+          </a>
         </div>
 
-        <!-- Card 2: Electro Traveler -->
-        <div class="traveler-card" data-traveler="1" style="--card-element-color: var(--color-electro); --card-element-glow: rgba(179, 102, 255, 0.5);">
-          <div class="card-arch-top"></div>
-          <div class="card-avatar-wrapper">
-            <!-- Arched background -->
+        <!-- Card 2: Electro Traveler (John Cedrick Dela Corta) -->
+        <div class="traveler-card-slot" data-traveler="1">
+          <div class="card-outer-fx" aria-hidden="true">
+            <canvas class="card-fx-canvas"></canvas>
           </div>
-          <div class="card-shade"></div>
-          <div class="card-element-badge">
-            <img src="./assets/images/elements/electro_active.png" class="badge-icon-img" alt="Electro Vision">
-          </div>
-          <div class="card-stars">★★★★★</div>
+          <a href="cedrick.html" class="traveler-card card-electro" data-traveler="1" style="--card-element-color: var(--color-electro); --card-element-glow: rgba(179, 102, 255, 0.45); text-decoration: none; color: inherit;" title="View John Cedrick Dela Corta's Portfolio">
+            <div class="card-arch-top"></div>
+            <div class="card-avatar-wrapper">
+              <img src="./assets/images/traveler_electro.png" class="card-photo" alt="Electro Traveler John Cedrick Dela Corta">
+            </div>
+            <div class="card-shade"></div>
+            <div class="card-element-border" aria-hidden="true"></div>
+            <div class="card-element-badge">
+              <img src="./assets/images/elements/electro_active.png" class="badge-icon-img" alt="Electro Vision">
+            </div>
+            <div class="card-stars">★★★★★</div>
+          </a>
         </div>
 
-        <!-- Card 3: Pyro Traveler -->
-        <div class="traveler-card" data-traveler="2" style="--card-element-color: var(--color-pyro); --card-element-glow: rgba(255, 111, 64, 0.5);">
-          <div class="card-arch-top"></div>
-          <div class="card-avatar-wrapper">
-            <!-- Arched background -->
+        <!-- Card 3: Pyro Traveler (Arkin Phoenix Jaromamay) -->
+        <div class="traveler-card-slot" data-traveler="2">
+          <div class="card-outer-fx" aria-hidden="true">
+            <canvas class="card-fx-canvas"></canvas>
           </div>
-          <div class="card-shade"></div>
-          <div class="card-element-badge">
-            <img src="./assets/images/elements/pyro_active.png" class="badge-icon-img" alt="Pyro Vision">
-          </div>
-          <div class="card-stars">★★★★★</div>
+          <a href="arkin.html" class="traveler-card card-pyro" data-traveler="2" style="--card-element-color: var(--color-pyro); --card-element-glow: rgba(255, 111, 64, 0.45); text-decoration: none; color: inherit;" title="View Arkin Phoenix Jaromamay's Portfolio">
+            <div class="card-arch-top"></div>
+            <div class="card-avatar-wrapper">
+              <img src="./assets/images/traveler_pyro.png" class="card-photo" alt="Pyro Traveler Arkin Phoenix Jaromamay">
+            </div>
+            <div class="card-shade"></div>
+            <div class="card-element-border" aria-hidden="true"></div>
+            <div class="card-element-badge">
+              <img src="./assets/images/elements/pyro_active.png" class="badge-icon-img" alt="Pyro Vision">
+            </div>
+            <div class="card-stars">★★★★★</div>
+          </a>
         </div>
 
-        <!-- Card 4: Anemo Traveler (With Student Photo) -->
-        <div class="traveler-card" data-traveler="3" style="--card-element-color: var(--color-anemo); --card-element-glow: rgba(116, 229, 196, 0.5);">
-          <div class="card-arch-top"></div>
-          <div class="card-avatar-wrapper">
-            <img src="./assets/images/traveler_anemo.png" class="card-photo" alt="Anemo Traveler">
+        <!-- Card 4: Geo Traveler (Ricky Andrew Montoya) -->
+        <div class="traveler-card-slot" data-traveler="3">
+          <div class="card-outer-fx" aria-hidden="true">
+            <canvas class="card-fx-canvas"></canvas>
           </div>
-          <div class="card-shade"></div>
-          <div class="card-element-badge">
-            <img src="./assets/images/elements/anemo_active.png" class="badge-icon-img" alt="Anemo Vision">
-          </div>
-          <div class="card-stars">★★★★★</div>
+          <a href="montoya.html" class="traveler-card card-geo" data-traveler="3" style="--card-element-color: var(--color-geo); --card-element-glow: rgba(233, 181, 76, 0.45); text-decoration: none; color: inherit;" title="View Ricky Andrew Montoya's Portfolio">
+            <div class="card-arch-top"></div>
+            <div class="card-avatar-wrapper">
+              <img src="./assets/images/traveler_anemo.png" class="card-photo" alt="Geo Traveler Ricky Andrew Montoya">
+            </div>
+            <div class="card-shade"></div>
+            <div class="card-element-border" aria-hidden="true"></div>
+            <div class="card-element-badge">
+              <img src="./assets/images/elements/geo_active.png" class="badge-icon-img" alt="Geo Vision">
+            </div>
+            <div class="card-stars">★★★★★</div>
+          </a>
         </div>
       </div>
     </div>
@@ -1566,39 +1689,39 @@
       },
       {
         id: 1,
-        name: "Traveler II",
-        subtitle: "Electro • Logic & Systems Developer",
+        name: "John Cedrick Dela Corta",
+        subtitle: "Electro • IT Student, Software & Web Developer",
         element: "Electro",
         color: "#b366ff",
         weapon: "Mistsplitter Reforged (R1)",
         artifacts: "4-Piece Thundering Fury",
         constellation: "Fulgor Fulminis • C6",
-        img: "./assets/images/elements/electro_active.png",
-        bio: "The high-voltage systems engineer. Architect of interactive game mechanics, database integration, and high-frequency algorithms that power the Celestial Archive."
+        img: "./assets/images/traveler_electro.png",
+        bio: "The high-voltage systems engineer. Creator of Luntian Flower Shop, PH Maternal Health Dashboard, and Closed;Open. Blending interactive game systems with robust frontend web engineering."
       },
       {
         id: 2,
-        name: "Traveler III",
-        subtitle: "Pyro • Creative & Visual Director",
+        name: "Arkin Phoenix Jaromamay",
+        subtitle: "Pyro • IT Student, Software & Web Developer",
         element: "Pyro",
         color: "#ff6f40",
         weapon: "Staff of Homa (R1)",
         artifacts: "4-Piece Crimson Witch of Flames",
         constellation: "Ignis Purissimus • C6",
-        img: "./assets/images/elements/pyro_active.png",
-        bio: "The spark of imagination. Infusing fiery aesthetic direction, visual arts curation, celestial interface design, and artistic harmony across every slide and screen."
+        img: "./assets/images/traveler_pyro.png",
+        bio: "The spark of imagination. Creator of Resume Scanner, Hypertension Dashboard, and Visual Aide Web Extension. Blending AI-assisted data analytics, health informatics, and accessible frontend systems."
       },
       {
         id: 3,
-        name: "Dave / Patriot Scholar",
-        subtitle: "Anemo • Lead System Architect",
-        element: "Anemo",
-        color: "#74e5c4",
-        weapon: "Skyward Blade (R5)",
-        artifacts: "4-Piece Viridescent Venerer",
-        constellation: "Viator Caelestis • C6",
+        name: "Ricky Andrew Montoya",
+        subtitle: "Geo • Software & Web Developer, Graphic Designer",
+        element: "Geo",
+        color: "#e9b54c",
+        weapon: "Vortex Vanquisher (R1)",
+        artifacts: "4-Piece Archaic Petra",
+        constellation: "Lapis Dei • C6",
         img: "./assets/images/traveler_anemo.png",
-        bio: "NCR DOST Patriot Scholar Delegate (2025). Connecting diverse systems and unifying the collective talents of Group 4 into a synchronized digital archive."
+        bio: "NCR DOST Patriot Scholar Delegate (2025). Full-stack web developer and graphic designer. Creator of Pholaris and Manila Flood Dashboard, bridging technical architecture with compelling visual design."
       }
     ];
 
@@ -1817,8 +1940,28 @@
     // Traveler Card Click Modal
     let activeTravelerIndex = 3;
     document.querySelectorAll('.traveler-card').forEach(card => {
-      card.addEventListener('click', () => {
+      card.addEventListener('click', (e) => {
         const idx = parseInt(card.getAttribute('data-traveler'), 10);
+        if (idx === 0) {
+          // Navigates directly to Nicholas's standalone Hydro portfolio
+          window.location.href = 'nicholas.html';
+          return;
+        }
+        if (idx === 1) {
+          // Navigates directly to Cedrick's standalone Electro portfolio
+          window.location.href = 'cedrick.html';
+          return;
+        }
+        if (idx === 2) {
+          // Navigates directly to Arkin's standalone Pyro portfolio
+          window.location.href = 'arkin.html';
+          return;
+        }
+        if (idx === 3) {
+          // Navigates directly to Ricky's standalone Geo portfolio
+          window.location.href = 'montoya.html';
+          return;
+        }
         openTravelerModal(idx);
       });
     });
@@ -1886,6 +2029,292 @@
       alert(`✦ Thank you Traveler ${name}! Your dispatch has been transmitted to Celestia Headquarters.`);
       document.getElementById('contact-form').reset();
     }
+
+    /* =======================================================
+       ELEMENTAL CARD HOVER PARTICLE & ENERGY SYSTEM
+       (Refined & Toned-Down, Strictly OUTSIDE the Card Silhouette)
+       ======================================================= */
+    class CardElementalFX {
+      constructor(slot) {
+        this.slot = slot;
+        this.canvas = slot.querySelector('.card-fx-canvas');
+        if (!this.canvas) return;
+        this.ctx = this.canvas.getContext('2d');
+        this.card = slot.querySelector('.traveler-card');
+        this.travelerIdx = parseInt(slot.getAttribute('data-traveler'), 10);
+        this.element = ['hydro', 'electro', 'pyro', 'geo'][this.travelerIdx] || 'pyro';
+        this.particles = [];
+        this.lightningBolts = [];
+        this.animId = null;
+        this.isHovered = false;
+
+        this.init();
+      }
+
+      init() {
+        this.resize();
+        window.addEventListener('resize', () => this.resize());
+
+        this.slot.addEventListener('mouseenter', () => this.start());
+        this.slot.addEventListener('mouseleave', () => this.stop());
+      }
+
+      resize() {
+        if (!this.canvas) return;
+        this.width = this.canvas.width = this.canvas.clientWidth;
+        this.height = this.canvas.height = this.canvas.clientHeight;
+        // The card interior boundaries within the canvas:
+        // .card-outer-fx has top: -45px, left: -45px, right: -45px, bottom: -25px
+        this.cardX1 = 45;
+        this.cardX2 = Math.max(45, this.width - 45);
+        this.cardY1 = 45;
+        this.cardY2 = Math.max(45, this.height - 25);
+      }
+
+      start() {
+        this.isHovered = true;
+        this.resize();
+        if (!this.animId) {
+          this.loop();
+        }
+      }
+
+      stop() {
+        this.isHovered = false;
+      }
+
+      spawnParticle() {
+        const w = this.width;
+        const h = this.height;
+        if (!w || !h) return;
+
+        // Strictly spawn OUTSIDE the card silhouette (left or right outer margin)
+        const isLeft = Math.random() < 0.5;
+        const borderX = isLeft 
+          ? (Math.random() * (this.cardX1 - 12) + 8) 
+          : (this.cardX2 + 6 + Math.random() * (w - this.cardX2 - 14));
+        
+        // Spawn along the outer vertical flanks (from mid-bottom upwards)
+        const startY = this.cardY2 - Math.random() * (this.cardY2 * 0.75);
+
+        if (this.element === 'pyro') {
+          // Burning flame embers drifting outside borders to top arch
+          this.particles.push({
+            x: borderX,
+            y: startY,
+            vx: isLeft ? (Math.random() * 0.55 + 0.15) : -(Math.random() * 0.55 + 0.15),
+            vy: -(Math.random() * 2.4 + 1.4),
+            size: Math.random() * 3.5 + 2.0,
+            maxLife: Math.random() * 50 + 40,
+            life: 0,
+            color: Math.random() < 0.35 ? '#fff3b0' : (Math.random() < 0.7 ? '#ff9922' : '#ff4411')
+          });
+        } else if (this.element === 'electro') {
+          // Electric spark particles
+          this.particles.push({
+            x: borderX + (Math.random() - 0.5) * 8,
+            y: startY,
+            vx: (Math.random() - 0.5) * 2.2 + (isLeft ? 0.35 : -0.35),
+            vy: -(Math.random() * 3.2 + 2.0),
+            size: Math.random() * 3.0 + 1.8,
+            maxLife: Math.random() * 28 + 18,
+            life: 0,
+            color: Math.random() < 0.4 ? '#ffffff' : (Math.random() < 0.75 ? '#d8b4fe' : '#b366ff')
+          });
+          // Occasional lightning filament
+          if (Math.random() < 0.22) {
+            this.spawnLightning(isLeft, startY);
+          }
+        } else if (this.element === 'hydro') {
+          // Floating translucent aqua bubbles drifting up outside borders
+          this.particles.push({
+            baseX: borderX,
+            x: borderX,
+            y: startY,
+            seed: Math.random() * 100,
+            wobbleSpeed: Math.random() * 0.06 + 0.03,
+            wobbleAmp: Math.random() * 4 + 2,
+            vy: -(Math.random() * 2.0 + 1.2),
+            size: Math.random() * 4.5 + 2.4,
+            maxLife: Math.random() * 60 + 45,
+            life: 0,
+            color: '#19d3f5'
+          });
+        } else if (this.element === 'geo') {
+          // Golden crystal dust & diamond shards
+          this.particles.push({
+            x: borderX,
+            y: startY,
+            vx: isLeft ? (Math.random() * 0.45 + 0.1) : -(Math.random() * 0.45 + 0.1),
+            vy: -(Math.random() * 1.8 + 1.0),
+            size: Math.random() * 4.2 + 2.2,
+            angle: Math.random() * Math.PI * 2,
+            rotSpeed: (Math.random() - 0.5) * 0.05,
+            maxLife: Math.random() * 65 + 50,
+            life: 0,
+            color: Math.random() < 0.45 ? '#ffd57e' : (Math.random() < 0.8 ? '#e9b54c' : '#fff4cc')
+          });
+        }
+      }
+
+      spawnLightning(isLeft, startY) {
+        const x1 = isLeft ? 18 : this.width - 18;
+        const y1 = startY;
+        const y2 = Math.max(10, y1 - (Math.random() * 70 + 40));
+        const x2 = x1 + (isLeft ? Math.random() * 14 : -Math.random() * 14);
+        
+        const segments = [];
+        const count = 4;
+        let cx = x1, cy = y1;
+        for (let i = 1; i <= count; i++) {
+          const t = i / count;
+          const tx = x1 + (x2 - x1) * t + (Math.random() - 0.5) * 8;
+          const ty = y1 + (y2 - y1) * t;
+          segments.push({ x1: cx, y1: cy, x2: tx, y2: ty });
+          cx = tx;
+          cy = ty;
+        }
+        this.lightningBolts.push({ segments, life: 5 });
+      }
+
+      update() {
+        if (this.isHovered) {
+          this.spawnParticle();
+          this.spawnParticle();
+        }
+
+        // Update particles
+        for (let i = this.particles.length - 1; i >= 0; i--) {
+          const p = this.particles[i];
+          p.life++;
+          if (p.life >= p.maxLife || p.y < 5) {
+            this.particles.splice(i, 1);
+            continue;
+          }
+
+          if (this.element === 'hydro') {
+            p.x = p.baseX + Math.sin(p.seed + p.life * p.wobbleSpeed) * p.wobbleAmp;
+          } else {
+            p.x += p.vx || 0;
+          }
+          p.y += p.vy;
+
+          if (p.rotSpeed !== undefined) {
+            p.angle += p.rotSpeed;
+          }
+        }
+
+        // Update lightning bolts
+        for (let i = this.lightningBolts.length - 1; i >= 0; i--) {
+          this.lightningBolts[i].life--;
+          if (this.lightningBolts[i].life <= 0) {
+            this.lightningBolts.splice(i, 1);
+          }
+        }
+      }
+
+      draw() {
+        const ctx = this.ctx;
+        ctx.clearRect(0, 0, this.width, this.height);
+
+        // Draw lightning bolts (Electro)
+        if (this.lightningBolts.length > 0) {
+          ctx.save();
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = '#d8b4fe';
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1.8;
+          ctx.beginPath();
+          for (const bolt of this.lightningBolts) {
+            for (const seg of bolt.segments) {
+              ctx.moveTo(seg.x1, seg.y1);
+              ctx.lineTo(seg.x2, seg.y2);
+            }
+          }
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        // Draw particles
+        for (const p of this.particles) {
+          const progress = p.life / p.maxLife;
+          const alpha = (1 - progress) * 0.95;
+          const currentSize = p.size * (1 - progress * 0.3);
+
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, alpha);
+
+          if (this.element === 'pyro') {
+            // Glowing fiery ember
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = p.color;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, currentSize, 0, Math.PI * 2);
+            ctx.fill();
+          } else if (this.element === 'electro') {
+            // Electric spark
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = '#b366ff';
+            ctx.fillStyle = p.color;
+            ctx.fillRect(p.x - currentSize / 2, p.y - currentSize / 2, currentSize, currentSize);
+          } else if (this.element === 'hydro') {
+            // Translucent glowing aqua bubble
+            ctx.strokeStyle = 'rgba(235, 255, 255, ' + Math.min(1, alpha * 1.2) + ')';
+            ctx.fillStyle = 'rgba(25, 211, 245, ' + (alpha * 0.45) + ')';
+            ctx.lineWidth = 1.4;
+            ctx.shadowBlur = 7;
+            ctx.shadowColor = '#19d3f5';
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, currentSize, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+
+            // Specular reflection dot
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(p.x - currentSize * 0.3, p.y - currentSize * 0.3, currentSize * 0.28, 0, Math.PI * 2);
+            ctx.fill();
+          } else if (this.element === 'geo') {
+            // Rotating diamond crystal shard
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.angle);
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = '#ffd57e';
+            ctx.fillStyle = p.color;
+            ctx.strokeStyle = '#fff6d4';
+            ctx.lineWidth = 1.0;
+            ctx.beginPath();
+            ctx.moveTo(0, -currentSize);
+            ctx.lineTo(currentSize * 0.65, 0);
+            ctx.lineTo(0, currentSize);
+            ctx.lineTo(-currentSize * 0.65, 0);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+          }
+
+          ctx.restore();
+        }
+      }
+
+      loop() {
+        if (!this.isHovered && this.particles.length === 0 && this.lightningBolts.length === 0) {
+          if (this.ctx) this.ctx.clearRect(0, 0, this.width, this.height);
+          this.animId = null;
+          return;
+        }
+
+        this.update();
+        this.draw();
+        this.animId = requestAnimationFrame(() => this.loop());
+      }
+    }
+
+    // Initialize elemental FX for all traveler card slots
+    document.querySelectorAll('.traveler-card-slot').forEach(slot => {
+      new CardElementalFX(slot);
+    });
 
     /* Ambient Canvas Star Particles */
     const canvas = document.getElementById('ambient-canvas');

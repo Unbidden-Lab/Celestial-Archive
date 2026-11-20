@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nicholas Andrew Alcantara • Hydro Portfolio</title>
+  
+  <!-- Preconnect & Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Crimson+Pro:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Dedicated Hydro Stylesheet -->
+  <link rel="stylesheet" href="./nicholas.css">
+</head>
+<body class="nicholas-portfolio-body">
+
+  <!-- ==================== FIXED TOP NAVIGATION BAR ==================== -->
+  <nav class="genshin-navbar" id="genshin-navbar">
+    <a href="index.html#home" class="nav-brand" title="Return to Celestial Archive Home" aria-label="Celestial Archive Home">
+      <img src="./assets/images/celestia_star.png" class="nav-logo-star" alt="Celestia Star Logo">
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#home" class="nav-link">Home</a></li>
+      <li><a href="index.html#travelers" class="nav-link">Travelers</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==================== MAIN FULL-BLEED PORTFOLIO DISPLAY ==================== -->
+  <main class="portfolio-container" id="portfolio-container">
+    
+    <!-- High-Resolution Mockup Vector Rendering (Full Bleed 100% Width) -->
+    <picture>
+      <source srcset="./assets/nicholas/portfolio_mockup_hd.webp" type="image/webp">
+      <img src="./assets/nicholas/portfolio_mockup_hd.png" alt="Nicholas Andrew Alcantara • Fontaine Hydro Portfolio" class="portfolio-mockup-image" loading="eager" fetchpriority="high">
+    </picture>
+
+    <!-- ==================== 1. INTERACTIVE PROJECT CARDS ==================== -->
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-closed-open" data-project="closed-open" aria-label="View Closed;Open Project Details" title="Closed;Open • Narrative Game"></button>
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-dengue-heatmap" data-project="dengue-heatmap" aria-label="View Dengue Heatmap Project Details" title="Dengue Heatmap • Spatiotemporal Analysis Tool"></button>
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-eclipse" data-project="eclipse" aria-label="View Eclipse Project Details" title="Eclipse • Global Game Jam 2026 Winner"></button>
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-ecoality" data-project="ecoality" aria-label="View Ecoality Project Details" title="Ecoality • Hawk-A-Thon Prototype"></button>
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-cyberedge" data-project="cyberedge" aria-label="View CyberEdge Industries Project Details" title="CyberEdge Industries • Corporate Frontend"></button>
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-monte-oro" data-project="monte-oro" aria-label="View Monté Oro Atelier Project Details" title="Monté Oro Atelier • Luxury Brand"></button>
+
+    <!-- ==================== 2. INTERACTIVE FOOTER HOTSPOTS ==================== -->
+    <!-- Back Button (Bottom-Left Stylized Arrow) -->
+    <a href="index.html#travelers" class="interactive-hotspot hotspot-back-btn" id="footer-back-btn" aria-label="Back to Travelers" title="Back to Travelers"></a>
+
+    <!-- Social Links (Bottom-Right) -->
+    <a href="mailto:alcantara.nicholas@example.com" class="interactive-hotspot hotspot-social hotspot-footer-email" aria-label="Send Email to Nicholas" title="Email Nicholas"></a>
+    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="interactive-hotspot hotspot-social hotspot-footer-linkedin" aria-label="LinkedIn Profile" title="LinkedIn Profile"></a>
+    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="interactive-hotspot hotspot-social hotspot-footer-github" aria-label="GitHub Profile" title="GitHub Profile"></a>
+
+  </main>
+
+  <!-- ==================== 3. PROJECT DETAIL MODAL ==================== -->
+  <div class="project-modal-backdrop" id="project-modal" aria-hidden="true" role="dialog">
+    <div class="project-modal-card">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Modal">✕</button>
+      
+      <div class="modal-header">
+        <img src="./assets/nicholas/card_closed_open.png" id="modal-project-img" class="modal-card-preview" alt="Project Preview">
+        <div class="modal-titles">
+          <span class="modal-tag" id="modal-tag">Narrative Game</span>
+          <h3 class="modal-title" id="modal-title">Closed;Open</h3>
+        </div>
+      </div>
+
+      <div class="modal-body" id="modal-body">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="modal-tech-stack" id="modal-tech-stack">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 4. INTERACTION LOGIC & AUDIO ==================== -->
+  <script>
+    // Project Information Database (Accurate to Mockup Data)
+    const projectsData = {
+      'closed-open': {
+        title: 'Closed;Open',
+        tag: 'CLOSED;OPEN • Narrative game feat. Ethan & Noah.',
+        img: './assets/nicholas/card_closed_open.png',
+        desc: 'An immersive atmospheric narrative experience focusing on emotional storytelling, interactive dialogue branches, and distinct psychological art direction. Led the UI/UX design, core web integration, and custom character illustration assets.',
+        tech: ['Unity', 'C#', 'Figma', 'Web Development', 'Digital Illustration']
+      },
+      'dengue-heatmap': {
+        title: 'Dengue Heatmap',
+        tag: 'DENGUE HEATMAP • Spatiotemporal analysis tool.',
+        img: './assets/nicholas/card_dengue_heatmap.png',
+        desc: 'A comprehensive data visualization and spatial analysis platform tracking dengue outbreaks and vulnerable urban clusters. Designed to assist local healthcare units in real-time geospatial resource deployment and community risk monitoring.',
+        tech: ['GIS Mapping', 'Python', 'Leaflet / Mapbox', 'Data Analytics', 'JavaScript']
+      },
+      'eclipse': {
+        title: 'Eclipse',
+        tag: 'ECLIPSE • Global Game Jam 2026 Winner.',
+        img: './assets/nicholas/card_eclipse.png',
+        desc: 'Award-winning puzzle-adventure title crafted in 48 hours for the Global Game Jam 2026. Explores light, shadow manipulation, and celestial mechanics through a unique dual-world lens. Awarded best overall aesthetic and gameplay innovation.',
+        tech: ['Godot Engine', 'GDScript', 'Pixel Art / Shaders', 'Audio Design', 'Level Design']
+      },
+      'ecoality': {
+        title: 'Ecoality',
+        tag: 'ECOALITY • HAWK-A-THON • Hackathon UI/UX prototype designed in Figma.',
+        img: './assets/nicholas/card_ecoality.png',
+        desc: 'Awarded prototype for sustainable urban carbon-tracking and gamified environmental action. Features an intuitive ecological dashboard with real-time carbon reduction milestones, community challenges, and reward tiers.',
+        tech: ['UI/UX Design', 'Figma Prototype', 'Design Systems', 'User Research', 'React']
+      },
+      'cyberedge': {
+        title: 'CyberEdge Industries',
+        tag: 'CYBEREDGE INDUSTRIES • Corporate frontend design.',
+        img: './assets/nicholas/card_cyberedge.png',
+        desc: 'Cutting-edge corporate identity and web portal design for a next-generation tech enterprise. Delivers an ultra-responsive futuristic user interface, sleek CSS animations, and seamless developer documentation portals.',
+        tech: ['HTML5 / SCSS', 'Modern JavaScript', 'CSS Grid & Flexbox', 'Brand Identity', 'Responsive Design']
+      },
+      'monte-oro': {
+        title: 'Monté Oro Atelier',
+        tag: 'MONTÈ ORO ATELIER • Luxury brand website implementation.',
+        img: './assets/nicholas/card_monte_oro.png',
+        desc: 'An elegant bespoke digital atelier crafted for high-end artisanal craftsmanship and luxury timepieces. Built with fluid micro-interactions, editorial typography, and high-performance product storytelling.',
+        tech: ['Front-End Architecture', 'GSAP Animations', 'E-Commerce UX', 'Performance Tuning', 'Typography']
+      }
+    };
+
+    // Sound FX (Hydro Chime synthesized via Web Audio)
+    let audioCtx = null;
+    function playHydroChime() {
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(659.25, audioCtx.currentTime); // E5
+        osc.frequency.exponentialRampToValueAtTime(1318.5, audioCtx.currentTime + 0.25); // E6
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.45);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.45);
+      } catch (e) {
+        // Audio policy fallback
+      }
+    }
+
+    // Modal Control
+    const modal = document.getElementById('project-modal');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modalImg = document.getElementById('modal-project-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalTag = document.getElementById('modal-tag');
+    const modalBody = document.getElementById('modal-body');
+    const modalTechStack = document.getElementById('modal-tech-stack');
+
+    function openProjectModal(projectId) {
+      const data = projectsData[projectId];
+      if (!data) return;
+
+      modalImg.src = data.img;
+      modalImg.alt = data.title;
+      modalTitle.textContent = data.title;
+      modalTag.textContent = data.tag;
+      modalBody.textContent = data.desc;
+
+      modalTechStack.innerHTML = '';
+      data.tech.forEach(tech => {
+        const chip = document.createElement('span');
+        chip.className = 'tech-chip';
+        chip.textContent = tech;
+        modalTechStack.appendChild(chip);
+      });
+
+      playHydroChime();
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Attach click events to project cards
+    document.querySelectorAll('.hotspot-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const projId = card.getAttribute('data-project');
+        openProjectModal(projId);
+      });
+    });
+
+    modalCloseBtn.addEventListener('click', closeProjectModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeProjectModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeProjectModal();
+      }
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('genshin-navbar');
+      if (navbar) {
+        if (window.scrollY > 30) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }
+    });
+
+    // Back Button Logic
+    const backBtn = document.getElementById('footer-back-btn');
+    if (backBtn) {
+      backBtn.addEventListener('click', (e) => {
+        playHydroChime();
+        if (document.referrer && (document.referrer.includes('index.html') || document.referrer.includes(window.location.host))) {
+          e.preventDefault();
+          window.history.back();
+        }
+      });
+    }
+
+    // Navigation and Social audio chime on click
+    document.querySelectorAll('.nav-link, .nav-brand, .hotspot-social').forEach(el => {
+      el.addEventListener('click', () => {
+        playHydroChime();
+      });
+    });
+  </script>
+</body>
+</html>

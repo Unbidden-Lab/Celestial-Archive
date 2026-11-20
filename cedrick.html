@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>John Cedrick Dela Corta • Electro Portfolio</title>
+  
+  <!-- Preconnect & Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Crimson+Pro:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Dedicated Electro Stylesheet -->
+  <link rel="stylesheet" href="./cedrick.css">
+</head>
+<body class="cedrick-portfolio-body">
+
+  <!-- ==================== FIXED TOP NAVIGATION BAR ==================== -->
+  <nav class="genshin-navbar" id="genshin-navbar">
+    <a href="index.html#home" class="nav-brand" title="Return to Celestial Archive Home" aria-label="Celestial Archive Home">
+      <img src="./assets/images/celestia_star.png" class="nav-logo-star" alt="Celestia Star Logo">
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#home" class="nav-link">Home</a></li>
+      <li><a href="index.html#travelers" class="nav-link">Travelers</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==================== MAIN FULL-BLEED PORTFOLIO DISPLAY ==================== -->
+  <main class="portfolio-container" id="portfolio-container">
+    
+    <!-- High-Resolution Mockup Vector Rendering (Full Bleed 100% Width) -->
+    <picture>
+      <source srcset="./assets/cedrick/portfolio_mockup_hd.webp" type="image/webp">
+      <img src="./assets/cedrick/portfolio_mockup_hd.png" alt="John Cedrick Dela Corta • Inazuma Electro Portfolio" class="portfolio-mockup-image" loading="eager" fetchpriority="high">
+    </picture>
+
+    <!-- ==================== 1. INTERACTIVE PROJECT CARDS ==================== -->
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-luntian" data-project="luntian" aria-label="View Luntian Flower Shop Project Details" title="Luntian Flower Shop • E-Commerce Platform"></button>
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-maternal-health" data-project="maternal-health" aria-label="View PH Maternal Health Dashboard Project Details" title="PH Maternal Health Dashboard • Health Data Tool"></button>
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-closed-open" data-project="closed-open" aria-label="View Closed;Open Project Details" title="Closed;Open • Narrative Game"></button>
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-ecoality" data-project="ecoality" aria-label="View Ecoality Project Details" title="Ecoality • Hawk-A-Thon Prototype"></button>
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-otaku-shelf" data-project="otaku-shelf" aria-label="View Otaku Shelf Project Details" title="Otaku Shelf • Anime & Manga Platform"></button>
+
+    <!-- ==================== 2. INTERACTIVE FOOTER HOTSPOTS ==================== -->
+    <!-- Back Button (Bottom-Left Stylized Arrow) -->
+    <a href="index.html#travelers" class="interactive-hotspot hotspot-back-btn" id="footer-back-btn" aria-label="Back to Travelers" title="Back to Travelers"></a>
+
+    <!-- Social Links (Bottom-Right) -->
+    <a href="mailto:delacorta.cedrick@example.com" class="interactive-hotspot hotspot-social hotspot-footer-email" aria-label="Send Email to Cedrick" title="Email Cedrick"></a>
+    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="interactive-hotspot hotspot-social hotspot-footer-linkedin" aria-label="LinkedIn Profile" title="LinkedIn Profile"></a>
+    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="interactive-hotspot hotspot-social hotspot-footer-github" aria-label="GitHub Profile" title="GitHub Profile"></a>
+
+  </main>
+
+  <!-- ==================== 3. PROJECT DETAIL MODAL ==================== -->
+  <div class="project-modal-backdrop" id="project-modal" aria-hidden="true" role="dialog">
+    <div class="project-modal-card">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Modal">✕</button>
+      
+      <div class="modal-header">
+        <img src="./assets/cedrick/card_luntian.png" id="modal-project-img" class="modal-card-preview" alt="Project Preview">
+        <div class="modal-titles">
+          <span class="modal-tag" id="modal-tag">Full-Stack E-Commerce</span>
+          <h3 class="modal-title" id="modal-title">Luntian Flower Shop</h3>
+        </div>
+      </div>
+
+      <div class="modal-body" id="modal-body">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="modal-tech-stack" id="modal-tech-stack">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 4. INTERACTION LOGIC & AUDIO ==================== -->
+  <script>
+    // Project Information Database (Accurate to Cedrick's Mockup Data)
+    const projectsData = {
+      'luntian': {
+        title: 'Luntian Flower Shop',
+        tag: 'LUNTIAN FLOWER SHOP • Full-stack e-commerce web platform.',
+        img: './assets/cedrick/card_luntian.png',
+        desc: 'A modern full-stack e-commerce web platform for floral arrangements and botanical gifts, featuring bespoke UI/UX design, interactive product catalogs, seamless cart management, and secure checkout integration.',
+        tech: ['Next.js', 'React', 'Tailwind CSS', 'Node.js', 'Stripe API', 'PostgreSQL']
+      },
+      'maternal-health': {
+        title: 'PH Maternal Health Dashboard',
+        tag: 'PH MATERNAL HEALTH DASHBOARD • Responsive Philippine maternal mortality data dashboard',
+        img: './assets/cedrick/card_maternal_health.png',
+        desc: 'An impactful responsive health data visualization platform monitoring Philippine maternal mortality rates and regional healthcare indices, enabling epidemiological insights and policy awareness through interactive geospatial maps and charts.',
+        tech: ['Data Analytics', 'Python', 'D3.js / Chart.js', 'GIS Mapping', 'UI/UX Design']
+      },
+      'closed-open': {
+        title: 'Closed;Open',
+        tag: 'CLOSED:OPEN • Narrative game feat. Ethan & Noah.',
+        img: './assets/cedrick/card_closed_open.png',
+        desc: 'An evocative narrative game exploring branching choices, character relationships, and emotional storytelling featuring protagonists Ethan & Noah, developed with customized interactive dialogue mechanics.',
+        tech: ['Unity', 'C#', 'Narrative Design', 'Figma', 'Digital Art']
+      },
+      'ecoality': {
+        title: 'Ecoality',
+        tag: 'ECOALITY • HAWK-A-THON • Hackathon UI/UX prototype designed in Figma.',
+        img: './assets/cedrick/card_ecoality.png',
+        desc: 'Award-winning environmental tracking application prototype designed for the Hawk-A-Thon hackathon, empowering communities through gamified ecological milestones and carbon reduction analytics.',
+        tech: ['UI/UX Design', 'Figma Prototype', 'Design Systems', 'User Research', 'Sustainability']
+      },
+      'otaku-shelf': {
+        title: 'Otaku Shelf',
+        tag: 'OTAKU SHELF • Engaging, intuitive UI/UX platform for anime and manga enthusiasts',
+        img: './assets/cedrick/card_otaku_shelf.png',
+        desc: 'A community-focused web platform designed for anime and manga enthusiasts to track watchlists, share curated reviews, and discover seasonal releases through an engaging and intuitive user interface.',
+        tech: ['React', 'TypeScript', 'UI/UX Design', 'Anime/Manga API', 'CSS Grid']
+      }
+    };
+
+    // Sound FX (Electro Chime synthesized via Web Audio)
+    let audioCtx = null;
+    function playElectroChime() {
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc1 = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        
+        osc1.type = 'triangle';
+        osc2.type = 'sine';
+        
+        // Crisp, electric Inazuma harmonic chime (B5 & F#6)
+        osc1.frequency.setValueAtTime(987.77, audioCtx.currentTime); // B5
+        osc2.frequency.setValueAtTime(1479.98, audioCtx.currentTime); // F#6
+        osc1.frequency.exponentialRampToValueAtTime(1975.53, audioCtx.currentTime + 0.22); // B6
+        
+        gain.gain.setValueAtTime(0.14, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.42);
+        
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc1.start();
+        osc2.start();
+        osc1.stop(audioCtx.currentTime + 0.42);
+        osc2.stop(audioCtx.currentTime + 0.42);
+      } catch (e) {
+        // Audio policy fallback
+      }
+    }
+
+    // Modal Control
+    const modal = document.getElementById('project-modal');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modalImg = document.getElementById('modal-project-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalTag = document.getElementById('modal-tag');
+    const modalBody = document.getElementById('modal-body');
+    const modalTechStack = document.getElementById('modal-tech-stack');
+
+    function openProjectModal(projectId) {
+      const data = projectsData[projectId];
+      if (!data) return;
+
+      modalImg.src = data.img;
+      modalImg.alt = data.title;
+      modalTitle.textContent = data.title;
+      modalTag.textContent = data.tag;
+      modalBody.textContent = data.desc;
+
+      modalTechStack.innerHTML = '';
+      data.tech.forEach(tech => {
+        const chip = document.createElement('span');
+        chip.className = 'tech-chip';
+        chip.textContent = tech;
+        modalTechStack.appendChild(chip);
+      });
+
+      playElectroChime();
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Attach click events to project cards
+    document.querySelectorAll('.hotspot-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const projId = card.getAttribute('data-project');
+        openProjectModal(projId);
+      });
+    });
+
+    modalCloseBtn.addEventListener('click', closeProjectModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeProjectModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeProjectModal();
+      }
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('genshin-navbar');
+      if (navbar) {
+        if (window.scrollY > 30) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }
+    });
+
+    // Back Button Logic
+    const backBtn = document.getElementById('footer-back-btn');
+    if (backBtn) {
+      backBtn.addEventListener('click', (e) => {
+        playElectroChime();
+        if (document.referrer && (document.referrer.includes('index.html') || document.referrer.includes(window.location.host))) {
+          e.preventDefault();
+          window.history.back();
+        }
+      });
+    }
+
+    // Navigation and Social audio chime on click
+    document.querySelectorAll('.nav-link, .nav-brand, .hotspot-social').forEach(el => {
+      el.addEventListener('click', () => {
+        playElectroChime();
+      });
+    });
+  </script>
+</body>
+</html>

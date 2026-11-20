@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ricky Andrew Montoya • Geo Portfolio</title>
+  
+  <!-- Preconnect & Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Crimson+Pro:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Dedicated Geo Stylesheet -->
+  <link rel="stylesheet" href="./montoya.css">
+</head>
+<body class="montoya-portfolio-body">
+
+  <!-- ==================== FIXED TOP NAVIGATION BAR ==================== -->
+  <nav class="genshin-navbar" id="genshin-navbar">
+    <a href="index.html#home" class="nav-brand" title="Return to Celestial Archive Home" aria-label="Celestial Archive Home">
+      <img src="./assets/images/celestia_star.png" class="nav-logo-star" alt="Celestia Star Logo">
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html#home" class="nav-link">Home</a></li>
+      <li><a href="index.html#travelers" class="nav-link">Travelers</a></li>
+      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ==================== MAIN FULL-BLEED PORTFOLIO DISPLAY ==================== -->
+  <main class="portfolio-container" id="portfolio-container">
+    
+    <!-- High-Resolution Mockup Vector Rendering (Full Bleed 100% Width) -->
+    <picture>
+      <source srcset="./assets/montoya/portfolio_mockup_hd.webp" type="image/webp">
+      <img src="./assets/montoya/portfolio_mockup_hd.png" alt="Ricky Andrew Montoya • Liyue Geo Portfolio" class="portfolio-mockup-image" loading="eager" fetchpriority="high">
+    </picture>
+
+    <!-- ==================== 1. INTERACTIVE PROJECT CARDS ==================== -->
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-pholaris" data-project="pholaris" aria-label="View Pholaris Project Details" title="Pholaris • Teacher Assistive Web Platform"></button>
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-manila-flood" data-project="manila-flood" aria-label="View Manila Flood Dashboard Project Details" title="Manila Flood Dashboard • Flooded Area Analysis"></button>
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-otaku-shelf" data-project="otaku-shelf" aria-label="View Otaku Shelf Project Details" title="Otaku Shelf • Anime & Manga Platform"></button>
+
+    <!-- ==================== 2. INTERACTIVE PUBMATS & MASCOTS GRID ==================== -->
+    <!-- Row 1 Pubmats -->
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r1-c1" data-pubmat="1" aria-label="View Pubmat 1" title="Pubmat Artwork 1"></button>
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r1-c2" data-pubmat="2" aria-label="View Pubmat 2" title="Pubmat Artwork 2"></button>
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r1-c3" data-pubmat="3" aria-label="View Pubmat 3" title="Pubmat Artwork 3"></button>
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r1-c4" data-pubmat="4" aria-label="View Pubmat 4" title="Pubmat Artwork 4"></button>
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r1-c5" data-pubmat="5" aria-label="View Pubmat 5" title="Pubmat Artwork 5"></button>
+
+    <!-- Row 2 Pubmats -->
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r2-c1" data-pubmat="6" aria-label="View Pubmat 6" title="Pubmat Artwork 6"></button>
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r2-c2" data-pubmat="7" aria-label="View Pubmat 7" title="Pubmat Artwork 7"></button>
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r2-c3" data-pubmat="8" aria-label="View Pubmat 8" title="Pubmat Artwork 8"></button>
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r2-c4" data-pubmat="9" aria-label="View Pubmat 9" title="Pubmat Artwork 9"></button>
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r2-c5" data-pubmat="10" aria-label="View Pubmat 10" title="Pubmat Artwork 10"></button>
+
+    <!-- Row 3 Pubmats & Mascots -->
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r3-c1" data-pubmat="11" aria-label="View Pubmat 11" title="Pubmat Artwork 11"></button>
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r3-c2" data-pubmat="12" aria-label="View Pubmat 12" title="Pubmat Artwork 12"></button>
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r3-c3" data-pubmat="13" aria-label="View Pubmat 13" title="Pubmat Artwork 13"></button>
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r3-c4" data-pubmat="14" aria-label="View Pubmat 14" title="Pubmat Artwork 14"></button>
+    <button type="button" class="interactive-hotspot hotspot-pubmat pubmat-r3-c5" data-pubmat="15" aria-label="View Mascot Stickers" title="Mascot Design & Stickers"></button>
+
+    <!-- ==================== 3. INTERACTIVE FOOTER HOTSPOTS ==================== -->
+    <!-- Back Button (Bottom-Left Stylized Arrow) -->
+    <a href="index.html#travelers" class="interactive-hotspot hotspot-back-btn" id="footer-back-btn" aria-label="Back to Travelers" title="Back to Travelers"></a>
+
+    <!-- Social Links (Bottom-Right) -->
+    <a href="mailto:montoya.ricky@example.com" class="interactive-hotspot hotspot-social hotspot-footer-email" aria-label="Send Email to Ricky" title="Email Ricky"></a>
+    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="interactive-hotspot hotspot-social hotspot-footer-linkedin" aria-label="LinkedIn Profile" title="LinkedIn Profile"></a>
+    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="interactive-hotspot hotspot-social hotspot-footer-github" aria-label="GitHub Profile" title="GitHub Profile"></a>
+
+  </main>
+
+  <!-- ==================== 4. PROJECT DETAIL MODAL ==================== -->
+  <div class="project-modal-backdrop" id="project-modal" aria-hidden="true" role="dialog">
+    <div class="project-modal-card">
+      <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Modal">✕</button>
+      
+      <div class="modal-header">
+        <img src="./assets/montoya/card_pholaris.png" id="modal-project-img" class="modal-card-preview" alt="Project Preview">
+        <div class="modal-titles">
+          <span class="modal-tag" id="modal-tag">Full-Stack Web Platform</span>
+          <h3 class="modal-title" id="modal-title">Pholaris</h3>
+        </div>
+      </div>
+
+      <div class="modal-body" id="modal-body">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="modal-tech-stack" id="modal-tech-stack">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 5. INTERACTION LOGIC & AUDIO ==================== -->
+  <script>
+    // Project Information Database (Accurate to Montoya's Mockup Data)
+    const projectsData = {
+      'pholaris': {
+        title: 'Pholaris',
+        tag: 'PHOLARIS • Full-stack teacher assistive web platform.',
+        img: './assets/montoya/card_pholaris.png',
+        desc: 'A comprehensive teacher-assistive full-stack web application designed to streamline student assessment tracking, classroom record-keeping, automated grading metrics, and curriculum scheduling.',
+        tech: ['Next.js', 'React', 'Node.js', 'PostgreSQL', 'Tailwind CSS', 'REST API']
+      },
+      'manila-flood': {
+        title: 'Manila Flood Dashboard',
+        tag: 'MANILA FLOOD DASHBOARD • Flooded area analysis dashboard.',
+        img: './assets/montoya/card_manila_flood.png',
+        desc: 'A responsive spatial data dashboard mapping historical and real-time flooded zones across Metropolitan Manila. Features interactive depth level indicators, emergency routing, and risk vulnerability heatmaps.',
+        tech: ['Python', 'GIS Mapping', 'Leaflet', 'GeoJSON', 'Data Analytics', 'JavaScript']
+      },
+      'otaku-shelf': {
+        title: 'Otaku Shelf',
+        tag: 'OTAKU SHELF • Engaging, intuitive UI/UX platform for anime and manga enthusiasts.',
+        img: './assets/montoya/card_otaku_shelf.png',
+        desc: 'An engaging community platform and digital catalog tailored for anime and manga enthusiasts, featuring curated lists, personal review tracking, responsive layouts, and modern Japanese pop-culture UI design.',
+        tech: ['React', 'TypeScript', 'UI/UX Design', 'AniList API', 'Figma Prototype']
+      }
+    };
+
+    // Pubmats Data
+    const pubmatsTitles = {
+      1: "Graphic Design • Event Pubmat 1",
+      2: "Graphic Design • Event Pubmat 2",
+      3: "Graphic Design • Event Pubmat 3",
+      4: "Graphic Design • Event Pubmat 4",
+      5: "Graphic Design • Event Pubmat 5",
+      6: "Graphic Design • Event Pubmat 6",
+      7: "Graphic Design • Event Pubmat 7",
+      8: "Graphic Design • Event Pubmat 8",
+      9: "Graphic Design • Event Pubmat 9",
+      10: "Graphic Design • Event Pubmat 10",
+      11: "Graphic Design • Event Pubmat 11",
+      12: "Graphic Design • Event Pubmat 12",
+      13: "Graphic Design • Event Pubmat 13",
+      14: "Graphic Design • Event Pubmat 14",
+      15: "Mascots & Sticker Designs"
+    };
+
+    // Sound FX (Geo Chime synthesized via Web Audio)
+    let audioCtx = null;
+    function playGeoChime() {
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        const osc1 = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        
+        osc1.type = 'sine';
+        osc2.type = 'triangle';
+        
+        // Warm, resonant Liyue Geo bell tone (C5 & G5)
+        osc1.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+        osc2.frequency.setValueAtTime(783.99, audioCtx.currentTime); // G5
+        osc1.frequency.exponentialRampToValueAtTime(1046.50, audioCtx.currentTime + 0.35); // C6
+        
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.55);
+        
+        osc1.connect(gain);
+        osc2.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        osc1.start();
+        osc2.start();
+        osc1.stop(audioCtx.currentTime + 0.55);
+        osc2.stop(audioCtx.currentTime + 0.55);
+      } catch (e) {
+        // Audio policy fallback
+      }
+    }
+
+    // Modal Control
+    const modal = document.getElementById('project-modal');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modalImg = document.getElementById('modal-project-img');
+    const modalTitle = document.getElementById('modal-title');
+    const modalTag = document.getElementById('modal-tag');
+    const modalBody = document.getElementById('modal-body');
+    const modalTechStack = document.getElementById('modal-tech-stack');
+
+    function openProjectModal(projectId) {
+      const data = projectsData[projectId];
+      if (!data) return;
+
+      modalImg.src = data.img;
+      modalImg.alt = data.title;
+      modalTitle.textContent = data.title;
+      modalTag.textContent = data.tag;
+      modalBody.textContent = data.desc;
+
+      modalTechStack.innerHTML = '';
+      data.tech.forEach(tech => {
+        const chip = document.createElement('span');
+        chip.className = 'tech-chip';
+        chip.textContent = tech;
+        modalTechStack.appendChild(chip);
+      });
+
+      playGeoChime();
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function openPubmatModal(pubmatId) {
+      const title = pubmatsTitles[pubmatId] || `Pubmat Artwork ${pubmatId}`;
+      modalImg.src = `./assets/montoya/pubmats/pubmat_${pubmatId}.png`;
+      modalImg.alt = title;
+      modalTitle.textContent = title;
+      modalTag.textContent = "Graphic Design • Branding & Publication";
+      modalBody.textContent = "Custom publication material and visual branding asset designed for university campaigns, academic symposiums, and student organization events.";
+
+      modalTechStack.innerHTML = '';
+      ['Adobe Photoshop', 'Adobe Illustrator', 'Graphic Design', 'Visual Hierarchy', 'Branding'].forEach(tech => {
+        const chip = document.createElement('span');
+        chip.className = 'tech-chip';
+        chip.textContent = tech;
+        modalTechStack.appendChild(chip);
+      });
+
+      playGeoChime();
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Attach click events to project cards
+    document.querySelectorAll('.hotspot-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const projId = card.getAttribute('data-project');
+        openProjectModal(projId);
+      });
+    });
+
+    // Attach click events to pubmats
+    document.querySelectorAll('.hotspot-pubmat').forEach(pubmat => {
+      pubmat.addEventListener('click', () => {
+        const id = pubmat.getAttribute('data-pubmat');
+        openPubmatModal(id);
+      });
+    });
+
+    modalCloseBtn.addEventListener('click', closeProjectModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeProjectModal();
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeProjectModal();
+      }
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('genshin-navbar');
+      if (navbar) {
+        if (window.scrollY > 30) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }
+    });
+
+    // Back Button Logic
+    const backBtn = document.getElementById('footer-back-btn');
+    if (backBtn) {
+      backBtn.addEventListener('click', (e) => {
+        playGeoChime();
+        if (document.referrer && (document.referrer.includes('index.html') || document.referrer.includes(window.location.host))) {
+          e.preventDefault();
+          window.history.back();
+        }
+      });
+    }
+
+    // Navigation and Social audio chime on click
+    document.querySelectorAll('.nav-link, .nav-brand, .hotspot-social').forEach(el => {
+      el.addEventListener('click', () => {
+        playGeoChime();
+      });
+    });
+  </script>
+</body>
+</html>
