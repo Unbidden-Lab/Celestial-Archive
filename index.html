@@ -2643,6 +2643,18 @@
     window.addEventListener('DOMContentLoaded', () => {
       initPageRouting();
     });
+
+    // Handle back/forward cache (bfcache) navigation on mobile Safari / Chrome
+    window.addEventListener('pageshow', (event) => {
+      const hash = window.location.hash ? window.location.hash.toLowerCase() : '';
+      let hasVisited = false;
+      try {
+        hasVisited = sessionStorage.getItem('celestial_archive_visited') === 'true';
+      } catch (e) {}
+      if (hasVisited || hash) {
+        initPageRouting();
+      }
+    });
   </script>
 </body>
 </html>

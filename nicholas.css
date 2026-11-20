@@ -177,6 +177,8 @@ body.nicholas-portfolio-body {
   user-select: none;
   -webkit-user-drag: none;
   image-rendering: -webkit-optimize-contrast;
+  clip-path: inset(2.4% 0 0 0);
+  margin-top: -2.4%;
 }
 
 /* =======================================================
@@ -217,7 +219,7 @@ body.nicholas-portfolio-body {
 /* About Me Hotspot Button */
 .hotspot-about-me {
   left: 35.830%;
-  top: 59.935%;
+  top: 57.535%;
   width: 28.366%;
   height: 3.150%;
   border-radius: 36px;
@@ -252,7 +254,7 @@ body.nicholas-portfolio-body {
 /* Card 1: Closed;Open */
 .hotspot-card-closed-open {
   left: 13.616%;
-  top: 69.347%;
+  top: 66.947%;
   width: 23.494%;
   height: 8.505%;
 }
@@ -260,7 +262,7 @@ body.nicholas-portfolio-body {
 /* Card 2: Dengue Heatmap */
 .hotspot-card-dengue-heatmap {
   left: 38.272%;
-  top: 69.360%;
+  top: 66.960%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -268,7 +270,7 @@ body.nicholas-portfolio-body {
 /* Card 3: Eclipse */
 .hotspot-card-eclipse {
   left: 62.997%;
-  top: 69.360%;
+  top: 66.960%;
   width: 23.494%;
   height: 8.505%;
 }
@@ -276,7 +278,7 @@ body.nicholas-portfolio-body {
 /* Card 4: Ecoality */
 .hotspot-card-ecoality {
   left: 13.577%;
-  top: 78.308%;
+  top: 75.908%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -284,7 +286,7 @@ body.nicholas-portfolio-body {
 /* Card 5: CyberEdge Industries */
 .hotspot-card-cyberedge {
   left: 38.780%;
-  top: 78.308%;
+  top: 75.908%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -292,7 +294,7 @@ body.nicholas-portfolio-body {
 /* Card 6: Monté Oro Atelier */
 .hotspot-card-monte-oro {
   left: 63.055%;
-  top: 78.308%;
+  top: 75.908%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -300,7 +302,7 @@ body.nicholas-portfolio-body {
 /* Card 7: Visual Aide Web Extension */
 .hotspot-card-visual-aide {
   left: 38.799%;
-  top: 87.255%;
+  top: 84.855%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -311,7 +313,7 @@ body.nicholas-portfolio-body {
 /* Back Button (Bottom-Left Stylized Arrow) */
 .hotspot-back-btn {
   left: 6.032%;
-  top: 97.431%;
+  top: 95.031%;
   width: 3.953%;
   height: 1.774%;
   border-radius: 50%;
@@ -345,7 +347,7 @@ body.nicholas-portfolio-body {
 /* Email Icon */
 .hotspot-footer-email {
   left: 82.186%;
-  top: 97.848%;
+  top: 95.448%;
   width: 2.108%;
   height: 0.928%;
 }
@@ -353,7 +355,7 @@ body.nicholas-portfolio-body {
 /* LinkedIn Icon */
 .hotspot-footer-linkedin {
   left: 85.027%;
-  top: 97.848%;
+  top: 95.448%;
   width: 2.118%;
   height: 0.936%;
 }
@@ -361,7 +363,7 @@ body.nicholas-portfolio-body {
 /* GitHub Icon */
 .hotspot-footer-github {
   left: 87.897%;
-  top: 97.848%;
+  top: 95.448%;
   width: 2.118%;
   height: 0.936%;
 }

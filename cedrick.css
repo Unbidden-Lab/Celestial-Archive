@@ -177,6 +177,8 @@ body.cedrick-portfolio-body {
   user-select: none;
   -webkit-user-drag: none;
   image-rendering: -webkit-optimize-contrast;
+  clip-path: inset(2.4% 0 0 0);
+  margin-top: -2.4%;
 }
 
 /* =======================================================
@@ -217,7 +219,7 @@ body.cedrick-portfolio-body {
 /* About Me Hotspot Button */
 .hotspot-about-me {
   left: 35.830%;
-  top: 59.935%;
+  top: 57.535%;
   width: 28.366%;
   height: 3.150%;
   border-radius: 36px;
@@ -254,7 +256,7 @@ body.cedrick-portfolio-body {
 /* Card 1: Luntian Flower Shop */
 .hotspot-card-luntian {
   left: 13.577%;
-  top: 69.347%;
+  top: 66.947%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -262,7 +264,7 @@ body.cedrick-portfolio-body {
 /* Card 2: PH Maternal Health Dashboard */
 .hotspot-card-maternal-health {
   left: 38.263%;
-  top: 69.347%;
+  top: 66.947%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -270,7 +272,7 @@ body.cedrick-portfolio-body {
 /* Card 3: Closed;Open */
 .hotspot-card-closed-open {
   left: 62.938%;
-  top: 69.347%;
+  top: 66.947%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -278,7 +280,7 @@ body.cedrick-portfolio-body {
 /* Card 4: Ecoality */
 .hotspot-card-ecoality {
   left: 25.320%;
-  top: 78.406%;
+  top: 76.006%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -286,7 +288,7 @@ body.cedrick-portfolio-body {
 /* Card 5: Otaku Shelf */
 .hotspot-card-otaku-shelf {
   left: 51.205%;
-  top: 78.406%;
+  top: 76.006%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -294,7 +296,7 @@ body.cedrick-portfolio-body {
 /* Card 6: Visual Aide Web Extension */
 .hotspot-card-visual-aide {
   left: 38.204%;
-  top: 87.320%;
+  top: 84.920%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -305,7 +307,7 @@ body.cedrick-portfolio-body {
 /* Back Button (Bottom-Left Stylized Arrow) */
 .hotspot-back-btn {
   left: 6.032%;
-  top: 97.431%;
+  top: 95.031%;
   width: 3.953%;
   height: 1.774%;
   border-radius: 50%;
@@ -339,7 +341,7 @@ body.cedrick-portfolio-body {
 /* Email Icon */
 .hotspot-footer-email {
   left: 82.186%;
-  top: 97.848%;
+  top: 95.448%;
   width: 2.108%;
   height: 0.928%;
 }
@@ -347,7 +349,7 @@ body.cedrick-portfolio-body {
 /* LinkedIn Icon */
 .hotspot-footer-linkedin {
   left: 85.027%;
-  top: 97.848%;
+  top: 95.448%;
   width: 2.118%;
   height: 0.936%;
 }
@@ -355,7 +357,7 @@ body.cedrick-portfolio-body {
 /* GitHub Icon */
 .hotspot-footer-github {
   left: 87.897%;
-  top: 97.848%;
+  top: 95.448%;
   width: 2.118%;
   height: 0.936%;
 }

@@ -345,15 +345,16 @@
       }
     });
 
-    // Back Button Logic
+    // Back Button Logic (Bottom-Left)
     const backBtn = document.getElementById('footer-back-btn');
     if (backBtn) {
       backBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        try {
+          sessionStorage.setItem('celestial_archive_visited', 'true');
+        } catch (err) {}
         playPyroChime();
-        if (document.referrer && (document.referrer.includes('index.html') || document.referrer.includes(window.location.host))) {
-          e.preventDefault();
-          window.history.back();
-        }
+        window.location.href = 'index.html#travelers';
       });
     }
 
