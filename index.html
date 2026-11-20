@@ -105,7 +105,8 @@
     }
 
     /* =======================================================
-       SLIDE 1: GENSHIN LOADING SCREEN (ONLY ELEMENTAL ICONS)
+       SLIDE 1: GENSHIN LOADING SCREEN (SEQUENTIAL ELEMENT FILL)
+       (Each element slowly lights up horizontally from left to right)
        ======================================================= */
     #slide-1 {
       background: #000000;
@@ -127,6 +128,8 @@
       align-items: center;
       justify-content: center;
       z-index: 10;
+      width: 100%;
+      max-width: 1200px;
     }
 
     /* 7 Elements Row */
@@ -147,40 +150,92 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      --elem-fill: 0%;
+      --beam-opacity: 0;
     }
 
     .element-slot:hover {
-      transform: scale(1.18);
+      transform: scale(1.15);
     }
 
-    .element-icon {
+    /* Unlit Base Icon (Dark Graphite / Slate Gray) */
+    .element-icon-base {
       position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: contain;
-      transition: opacity 0.45s ease, filter 0.45s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-
-    .element-icon.inactive {
       opacity: 0.32;
-      filter: grayscale(1) brightness(0.9);
+      filter: grayscale(1) brightness(0.65);
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
     }
 
-    .element-icon.active {
-      opacity: 0;
-      transform: scale(0.85);
-      filter: drop-shadow(0 0 16px var(--elem-glow, rgba(255,255,255,0.85)));
+    /* Active Colored Layer (Revealed via Horizontal Clip-Path from Left to Right) */
+    .element-active-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      clip-path: inset(0 calc(100% - var(--elem-fill, 0%)) 0 0);
+      -webkit-clip-path: inset(0 calc(100% - var(--elem-fill, 0%)) 0 0);
     }
 
-    .element-slot.lit .element-icon.inactive {
-      opacity: 0;
-      transform: scale(1.1);
+    .element-slot.lit .element-active-wrap {
+      clip-path: none;
+      -webkit-clip-path: none;
     }
 
-    .element-slot.lit .element-icon.active {
-      opacity: 1;
-      transform: scale(1);
+    .element-icon-active {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+      transition: filter 0.4s ease;
+    }
+
+    .element-slot.lit .element-icon-active {
+      filter: drop-shadow(0 0 14px var(--elem-glow, rgba(255, 255, 255, 0.9)))
+              drop-shadow(0 0 28px var(--elem-glow, rgba(255, 255, 255, 0.55)));
+    }
+
+    /* Vertical Light Wipe Leading Edge Shimmer Beam */
+    .element-fill-beam {
+      position: absolute;
+      top: -4px;
+      bottom: -4px;
+      left: var(--elem-fill, 0%);
+      width: 5px;
+      transform: translateX(-50%);
+      background: #ffffff;
+      border-radius: 3px;
+      box-shadow: 0 0 8px #ffffff, 0 0 16px var(--elem-glow, #ffffff);
+      mix-blend-mode: screen;
+      pointer-events: none;
+      opacity: var(--beam-opacity, 0);
+      transition: opacity 0.15s ease;
+      z-index: 5;
+    }
+
+    /* Element Slot Pulse on Fill Complete */
+    .element-slot.just-lit {
+      animation: slot-pulse 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes slot-pulse {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.18); }
+      100% { transform: scale(1); }
     }
 
     /* Radial flare burst behind element when lighting up */
@@ -189,21 +244,21 @@
       width: 130px;
       height: 130px;
       border-radius: 50%;
-      background: radial-gradient(circle, var(--elem-glow, #fff) 0%, rgba(255,255,255,0) 70%);
+      background: radial-gradient(circle, var(--elem-glow, #fff) 0%, rgba(255, 255, 255, 0) 70%);
       opacity: 0;
-      transform: scale(0.2);
+      transform: scale(0.3);
       pointer-events: none;
-      transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+      z-index: 4;
     }
 
     .element-slot.just-lit .element-flare {
-      animation: flare-burst 0.8s ease-out forwards;
+      animation: flare-burst 0.7s ease-out forwards;
     }
 
     @keyframes flare-burst {
-      0% { opacity: 0.95; transform: scale(0.3); }
-      50% { opacity: 0.65; transform: scale(1.4); }
-      100% { opacity: 0; transform: scale(1.85); }
+      0% { opacity: 0.9; transform: scale(0.35); }
+      45% { opacity: 0.6; transform: scale(1.35); }
+      100% { opacity: 0; transform: scale(1.75); }
     }
 
     /* Subtle Slide 1 Controls in corner */
@@ -1112,7 +1167,7 @@
       box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
     }
 
-    /* Footer Bottom Centered Copyright matching Image 2 */
+    /* Footer Bottom Centered Copyright */
     .footer-bottom {
       position: relative;
       z-index: 5;
@@ -1123,11 +1178,11 @@
       align-items: center;
       max-width: 1080px;
       margin: 0 auto;
-      font-family: var(--font-heading);
-      font-size: 1rem;
+      font-family: var(--font-body);
+      font-size: 1.05rem;
       font-weight: 600;
-      color: rgba(255, 255, 255, 0.9);
-      letter-spacing: 0.04em;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: 0.03em;
     }
 
     /* =======================================================
@@ -1364,49 +1419,70 @@
        ======================================================= -->
   <section id="slide-1" class="slide-view active">
     <div class="loading-centerpiece">
-      <!-- 7 Element Icons Row (No loading bar, no notes) -->
+      <!-- 7 Element Icons Row (Sequentially Lit Up from Left to Right) -->
       <div class="elements-row" id="elements-row">
         <!-- Pyro -->
         <div class="element-slot" data-elem="pyro" style="--elem-glow: var(--color-pyro);">
+          <img src="./assets/images/elements/pyro_white.png" class="element-icon-base" alt="Pyro Unlit">
+          <div class="element-active-wrap">
+            <img src="./assets/images/elements/pyro_active.png" class="element-icon-active" alt="Pyro Lit">
+          </div>
+          <div class="element-fill-beam"></div>
           <div class="element-flare"></div>
-          <img src="./assets/images/elements/pyro_white.png" class="element-icon inactive" alt="Pyro Unlit">
-          <img src="./assets/images/elements/pyro_active.png" class="element-icon active" alt="Pyro Lit">
         </div>
         <!-- Hydro -->
         <div class="element-slot" data-elem="hydro" style="--elem-glow: var(--color-hydro);">
+          <img src="./assets/images/elements/hydro_white.png" class="element-icon-base" alt="Hydro Unlit">
+          <div class="element-active-wrap">
+            <img src="./assets/images/elements/hydro_active.png" class="element-icon-active" alt="Hydro Lit">
+          </div>
+          <div class="element-fill-beam"></div>
           <div class="element-flare"></div>
-          <img src="./assets/images/elements/hydro_white.png" class="element-icon inactive" alt="Hydro Unlit">
-          <img src="./assets/images/elements/hydro_active.png" class="element-icon active" alt="Hydro Lit">
         </div>
         <!-- Anemo -->
         <div class="element-slot" data-elem="anemo" style="--elem-glow: var(--color-anemo);">
+          <img src="./assets/images/elements/anemo_white.png" class="element-icon-base" alt="Anemo Unlit">
+          <div class="element-active-wrap">
+            <img src="./assets/images/elements/anemo_active.png" class="element-icon-active" alt="Anemo Lit">
+          </div>
+          <div class="element-fill-beam"></div>
           <div class="element-flare"></div>
-          <img src="./assets/images/elements/anemo_white.png" class="element-icon inactive" alt="Anemo Unlit">
-          <img src="./assets/images/elements/anemo_active.png" class="element-icon active" alt="Anemo Lit">
         </div>
         <!-- Electro -->
         <div class="element-slot" data-elem="electro" style="--elem-glow: var(--color-electro);">
+          <img src="./assets/images/elements/electro_white.png" class="element-icon-base" alt="Electro Unlit">
+          <div class="element-active-wrap">
+            <img src="./assets/images/elements/electro_active.png" class="element-icon-active" alt="Electro Lit">
+          </div>
+          <div class="element-fill-beam"></div>
           <div class="element-flare"></div>
-          <img src="./assets/images/elements/electro_white.png" class="element-icon inactive" alt="Electro Unlit">
-          <img src="./assets/images/elements/electro_active.png" class="element-icon active" alt="Electro Lit">
         </div>
         <!-- Dendro -->
         <div class="element-slot" data-elem="dendro" style="--elem-glow: var(--color-dendro);">
+          <img src="./assets/images/elements/dendro_white.png" class="element-icon-base" alt="Dendro Unlit">
+          <div class="element-active-wrap">
+            <img src="./assets/images/elements/dendro_active.png" class="element-icon-active" alt="Dendro Lit">
+          </div>
+          <div class="element-fill-beam"></div>
           <div class="element-flare"></div>
-          <img src="./assets/images/elements/dendro_white.png" class="element-icon inactive" alt="Dendro Unlit">
-          <img src="./assets/images/elements/dendro_active.png" class="element-icon active" alt="Dendro Lit">
         </div>
         <!-- Cryo -->
         <div class="element-slot" data-elem="cryo" style="--elem-glow: var(--color-cryo);">
+          <img src="./assets/images/elements/cryo_white.png" class="element-icon-base" alt="Cryo Unlit">
+          <div class="element-active-wrap">
+            <img src="./assets/images/elements/cryo_active.png" class="element-icon-active" alt="Cryo Lit">
+          </div>
+          <div class="element-fill-beam"></div>
           <div class="element-flare"></div>
-          <img src="./assets/images/elements/cryo_white.png" class="element-icon inactive" alt="Cryo Unlit">
-          <img src="./assets/images/elements/cryo_active.png" class="element-icon active" alt="Cryo Lit">
         </div>
         <!-- Geo -->
         <div class="element-slot" data-elem="geo" style="--elem-glow: var(--color-geo);">
+          <img src="./assets/images/elements/geo_white.png" class="element-icon-base" alt="Geo Unlit">
+          <div class="element-active-wrap">
+            <img src="./assets/images/elements/geo_active.png" class="element-icon-active" alt="Geo Lit">
+          </div>
+          <div class="element-fill-beam"></div>
           <div class="element-flare"></div>
-          <img src="./assets/images/elements/geo_white.png" class="element-icon inactive" alt="Geo Unlit">
-          <img src="./assets/images/elements/geo_active.png" class="element-icon active" alt="Geo Lit">
         </div>
       </div>
     </div>
@@ -1595,9 +1671,9 @@
         </div>
       </div>
 
-      <!-- Bottom Centered Copyright matching Image 2 -->
+      <!-- Bottom Centered Copyright -->
       <div class="footer-bottom">
-        <span>© 2026 Group 4</span>
+        <span>© 2026 | Alcantara • Dela Corta • Jaromamay • Montoya</span>
       </div>
     </div>
   </section>
@@ -1842,8 +1918,19 @@
         // Specific slide hooks
         if (slideId === 'slide-1') {
           startLoadingSequence();
-        } else if (slideId === 'slide-2') {
-          playWhoosh();
+        } else {
+          // Stop loading fill if moving away from slide-1
+          if (fillAnimId) {
+            cancelAnimationFrame(fillAnimId);
+            fillAnimId = null;
+          }
+          if (fillTimer) {
+            clearTimeout(fillTimer);
+            fillTimer = null;
+          }
+          if (slideId === 'slide-2') {
+            playWhoosh();
+          }
         }
       };
 
@@ -1854,49 +1941,109 @@
       }
     }
 
-    /* ==================== SLIDE 1 LOGIC (ONLY ELEMENT ICONS) ==================== */
-    function startLoadingSequence() {
-      if (loadingTimer) clearInterval(loadingTimer);
+    /* ==================== SLIDE 1 LOGIC (GENSHIN ELEMENT FILL SEQUENCE) ==================== */
+    let fillAnimId = null;
+    let fillTimer = null;
 
-      const slots = document.querySelectorAll('.element-slot');
+    function animateSingleElementFill(slot, duration, onComplete) {
+      if (!slot) {
+        if (onComplete) onComplete();
+        return;
+      }
+
+      const startTime = performance.now();
+      const startPct = 0;
+      const endPct = 100;
+
+      slot.classList.remove('lit');
+      slot.style.setProperty('--beam-opacity', '1');
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const rawProgress = Math.min(1, elapsed / duration);
+
+        // Smooth cubic easing across the individual icon
+        const progress = rawProgress < 0.5
+          ? 4 * rawProgress * rawProgress * rawProgress
+          : 1 - Math.pow(-2 * rawProgress + 2, 3) / 2;
+
+        const currentPct = startPct + progress * (endPct - startPct);
+        slot.style.setProperty('--elem-fill', `${currentPct.toFixed(1)}%`);
+
+        if (rawProgress < 1) {
+          fillAnimId = requestAnimationFrame(step);
+        } else {
+          // Icon reached 100% full
+          slot.style.setProperty('--elem-fill', '100%');
+          slot.style.setProperty('--beam-opacity', '0');
+          slot.classList.add('lit');
+          slot.classList.add('just-lit');
+          setTimeout(() => slot.classList.remove('just-lit'), 600);
+
+          if (onComplete) onComplete();
+        }
+      }
+
+      fillAnimId = requestAnimationFrame(step);
+    }
+
+    function startLoadingSequence() {
+      // Clear any pending animation or timer
+      if (fillAnimId) {
+        cancelAnimationFrame(fillAnimId);
+        fillAnimId = null;
+      }
+      if (fillTimer) {
+        clearTimeout(fillTimer);
+        fillTimer = null;
+      }
+
+      const slots = document.querySelectorAll('#elements-row .element-slot');
+      if (!slots || slots.length === 0) return;
+
+      // Reset all 7 slots to unlit base state
       slots.forEach(slot => {
         slot.classList.remove('lit');
         slot.classList.remove('just-lit');
+        slot.style.setProperty('--elem-fill', '0%');
+        slot.style.setProperty('--beam-opacity', '0');
       });
 
-      let currentStep = 0;
-      const totalSteps = slots.length; // 7
+      let currentIdx = 0;
+      const fillDuration = 440; // 440ms smooth left-to-right fill per element
 
-      loadingTimer = setInterval(() => {
-        if (currentStep < totalSteps) {
-          const slot = slots[currentStep];
-          slot.classList.add('lit');
-          slot.classList.add('just-lit');
-          setTimeout(() => slot.classList.remove('just-lit'), 700);
-
-          playElementChime(currentStep);
-          currentStep++;
-        } else {
-          clearInterval(loadingTimer);
+      function fillNext() {
+        if (currentIdx >= slots.length) {
           playCompletionFanfare();
-
-          // Wait 0.8s then smooth fade in to Slide 2 (no flashbang!)
-          setTimeout(() => {
+          fillTimer = setTimeout(() => {
             if (currentSlide === 'slide-1') {
               switchSlide('slide-2', false);
             }
           }, 800);
+          return;
         }
-      }, 700);
+
+        const slot = slots[currentIdx];
+        const thisIdx = currentIdx;
+
+        animateSingleElementFill(slot, fillDuration, () => {
+          playElementChime(thisIdx);
+          currentIdx++;
+          // Brief pause (50ms) between consecutive elements for natural cadence
+          fillTimer = setTimeout(fillNext, 50);
+        });
+      }
+
+      // Initial pause (300ms) showing all 7 unlit icons before Pyro begins filling
+      fillTimer = setTimeout(fillNext, 300);
     }
 
-    /* Click Element manually to trigger chime */
-    document.querySelectorAll('.element-slot').forEach((slot, idx) => {
+    /* Click Element manually to trigger individual left-to-right fill & chime */
+    document.querySelectorAll('#elements-row .element-slot').forEach((slot, idx) => {
       slot.addEventListener('click', () => {
-        slot.classList.add('lit');
-        slot.classList.add('just-lit');
-        setTimeout(() => slot.classList.remove('just-lit'), 700);
-        playElementChime(idx);
+        animateSingleElementFill(slot, 420, () => {
+          playElementChime(idx);
+        });
       });
     });
 
