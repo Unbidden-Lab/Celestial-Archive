@@ -213,15 +213,38 @@ body.montoya-portfolio-body {
 }
 
 /* =======================================================
-   4. PROJECT CARD HOTSPOTS (3 CARDS ROW)
+   4. ABOUT ME & PROJECT CARD HOTSPOTS (4 CARDS ROW)
    ======================================================= */
+/* About Me Hotspot Button */
+.hotspot-about-me {
+  left: 35.830%;
+  top: 59.935%;
+  width: 28.366%;
+  height: 3.150%;
+  border-radius: 36px;
+  border: 2px solid transparent;
+}
+
+.hotspot-about-me:hover {
+  border-color: rgba(255, 213, 126, 0.85);
+  background: rgba(233, 181, 76, 0.22);
+  box-shadow: 0 0 28px rgba(233, 181, 76, 0.8), 0 0 45px rgba(255, 213, 126, 0.55), inset 0 0 16px rgba(255, 213, 126, 0.4);
+  transform: translateY(-3px) scale(1.025);
+}
+
+.hotspot-about-me:active {
+  transform: scale(0.98);
+}
+
 .hotspot-card {
   border-radius: 12px;
+  border: 2px solid transparent;
 }
 
 .hotspot-card:hover {
-  background: rgba(233, 181, 76, 0.16);
-  box-shadow: 0 0 24px rgba(233, 181, 76, 0.65), 0 0 45px rgba(255, 213, 126, 0.45), inset 0 0 16px rgba(255, 213, 126, 0.35);
+  border-color: rgba(255, 213, 126, 0.85);
+  background: rgba(233, 181, 76, 0.18);
+  box-shadow: 0 0 28px rgba(233, 181, 76, 0.8), 0 0 50px rgba(255, 213, 126, 0.55), inset 0 0 20px rgba(255, 213, 126, 0.4);
   transform: translateY(-5px) scale(1.02);
 }
 
@@ -233,24 +256,32 @@ body.montoya-portfolio-body {
 .hotspot-card-pholaris {
   left: 19.170%;
   top: 68.192%;
-  width: 19.912%;
-  height: 7.182%;
+  width: 17.014%;
+  height: 6.200%;
 }
 
 /* Card 2: Manila Flood Dashboard */
 .hotspot-card-manila-flood {
-  left: 40.078%;
+  left: 37.030%;
   top: 68.192%;
-  width: 19.912%;
-  height: 7.182%;
+  width: 17.014%;
+  height: 6.200%;
 }
 
 /* Card 3: Otaku Shelf */
 .hotspot-card-otaku-shelf {
-  left: 60.976%;
+  left: 54.891%;
   top: 68.192%;
-  width: 19.912%;
-  height: 7.182%;
+  width: 17.014%;
+  height: 6.200%;
+}
+
+/* Card 4: Visual Aide Web Extension */
+.hotspot-card-visual-aide {
+  left: 73.013%;
+  top: 68.192%;
+  width: 17.014%;
+  height: 6.200%;
 }
 
 /* =======================================================
@@ -271,35 +302,35 @@ body.montoya-portfolio-body {
 }
 
 /* Row 1 */
-.pubmat-r1-c1 { left: 16.759%; top: 78.466%; width: 16.310%; height: 5.911%; }
-.pubmat-r1-c2 { left: 30.649%; top: 78.466%; width: 16.310%; height: 5.911%; }
-.pubmat-r1-c3 { left: 44.539%; top: 78.466%; width: 16.310%; height: 5.911%; }
-.pubmat-r1-c4 { left: 58.429%; top: 78.466%; width: 16.310%; height: 5.911%; }
-.pubmat-r1-c5 { left: 72.308%; top: 78.466%; width: 16.310%; height: 5.911%; }
+.pubmat-r1-c1 { left: 16.762%; top: 77.872%; width: 16.315%; height: 5.911%; }
+.pubmat-r1-c2 { left: 30.650%; top: 77.872%; width: 16.315%; height: 5.911%; }
+.pubmat-r1-c3 { left: 44.537%; top: 77.872%; width: 16.315%; height: 5.911%; }
+.pubmat-r1-c4 { left: 58.424%; top: 77.872%; width: 16.315%; height: 5.911%; }
+.pubmat-r1-c5 { left: 72.311%; top: 77.872%; width: 16.315%; height: 5.911%; }
 
 /* Row 2 */
-.pubmat-r2-c1 { left: 16.759%; top: 84.364%; width: 16.310%; height: 5.911%; }
-.pubmat-r2-c2 { left: 30.717%; top: 84.364%; width: 16.310%; height: 5.911%; }
-.pubmat-r2-c3 { left: 44.675%; top: 84.364%; width: 16.310%; height: 5.911%; }
-.pubmat-r2-c4 { left: 58.633%; top: 84.364%; width: 16.310%; height: 5.911%; }
-.pubmat-r2-c5 { left: 72.592%; top: 84.364%; width: 16.310%; height: 5.911%; }
+.pubmat-r2-c1 { left: 16.756%; top: 83.772%; width: 16.315%; height: 5.911%; }
+.pubmat-r2-c2 { left: 30.716%; top: 83.772%; width: 16.315%; height: 5.911%; }
+.pubmat-r2-c3 { left: 44.676%; top: 83.772%; width: 16.315%; height: 5.911%; }
+.pubmat-r2-c4 { left: 58.636%; top: 83.772%; width: 16.315%; height: 5.911%; }
+.pubmat-r2-c5 { left: 72.596%; top: 83.772%; width: 16.315%; height: 5.911%; }
 
 /* Row 3 */
-.pubmat-r3-c1 { left: 17.072%; top: 90.266%; width: 16.310%; height: 5.911%; }
-.pubmat-r3-c2 { left: 31.030%; top: 90.266%; width: 16.310%; height: 5.911%; }
-.pubmat-r3-c3 { left: 44.988%; top: 90.266%; width: 16.310%; height: 5.911%; }
-.pubmat-r3-c4 { left: 58.712%; top: 90.266%; width: 16.310%; height: 5.911%; }
-.pubmat-r3-c5 { left: 73.675%; top: 90.266%; width: 16.691%; height: 5.911%; }
+.pubmat-r3-c1 { left: 17.067%; top: 89.672%; width: 16.315%; height: 5.911%; }
+.pubmat-r3-c2 { left: 31.027%; top: 89.672%; width: 16.315%; height: 5.911%; }
+.pubmat-r3-c3 { left: 44.987%; top: 89.672%; width: 16.315%; height: 5.911%; }
+.pubmat-r3-c4 { left: 58.709%; top: 89.672%; width: 16.315%; height: 5.911%; }
+.pubmat-r3-c5 { left: 73.673%; top: 89.672%; width: 16.691%; height: 5.911%; }
 
 /* =======================================================
    6. FOOTER HOTSPOTS (BACK BUTTON & SOCIAL LINKS)
    ======================================================= */
 /* Back Button (Bottom-Left Stylized Arrow) */
 .hotspot-back-btn {
-  left: 5.661%;
-  top: 97.251%;
-  width: 4.685%;
-  height: 2.062%;
+  left: 6.032%;
+  top: 97.431%;
+  width: 3.953%;
+  height: 1.774%;
   border-radius: 50%;
 }
 
@@ -330,26 +361,26 @@ body.montoya-portfolio-body {
 
 /* Email Icon */
 .hotspot-footer-email {
-  left: 81.991%;
-  top: 97.723%;
-  width: 2.440%;
-  height: 1.117%;
+  left: 82.186%;
+  top: 97.848%;
+  width: 2.108%;
+  height: 0.928%;
 }
 
 /* LinkedIn Icon */
 .hotspot-footer-linkedin {
-  left: 84.919%;
-  top: 97.723%;
-  width: 2.440%;
-  height: 1.117%;
+  left: 85.025%;
+  top: 97.848%;
+  width: 2.118%;
+  height: 0.936%;
 }
 
 /* GitHub Icon */
 .hotspot-footer-github {
-  left: 87.750%;
-  top: 97.723%;
-  width: 2.440%;
-  height: 1.117%;
+  left: 87.893%;
+  top: 97.848%;
+  width: 2.118%;
+  height: 0.936%;
 }
 
 /* =======================================================

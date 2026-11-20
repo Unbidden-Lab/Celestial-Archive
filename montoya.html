@@ -40,10 +40,13 @@
       <img src="./assets/montoya/portfolio_mockup_hd.png" alt="Ricky Andrew Montoya • Liyue Geo Portfolio" class="portfolio-mockup-image" loading="eager" fetchpriority="high">
     </picture>
 
-    <!-- ==================== 1. INTERACTIVE PROJECT CARDS ==================== -->
+    <!-- ==================== 1. ABOUT ME & INTERACTIVE PROJECT CARDS ==================== -->
+    <button type="button" class="interactive-hotspot hotspot-about-me" id="hotspot-about-me" data-project="about-me" aria-label="View About Ricky Andrew Montoya Details" title="About Me • Ricky Andrew Montoya"></button>
+
     <button type="button" class="interactive-hotspot hotspot-card hotspot-card-pholaris" data-project="pholaris" aria-label="View Pholaris Project Details" title="Pholaris • Teacher Assistive Web Platform"></button>
     <button type="button" class="interactive-hotspot hotspot-card hotspot-card-manila-flood" data-project="manila-flood" aria-label="View Manila Flood Dashboard Project Details" title="Manila Flood Dashboard • Flooded Area Analysis"></button>
     <button type="button" class="interactive-hotspot hotspot-card hotspot-card-otaku-shelf" data-project="otaku-shelf" aria-label="View Otaku Shelf Project Details" title="Otaku Shelf • Anime & Manga Platform"></button>
+    <button type="button" class="interactive-hotspot hotspot-card hotspot-card-visual-aide" data-project="visual-aide" aria-label="View Visual Aide Web Extension Details" title="Visual Aide Web Extension • Dyslexia Reading Assistant"></button>
 
     <!-- ==================== 2. INTERACTIVE PUBMATS & MASCOTS GRID ==================== -->
     <!-- Row 1 Pubmats -->
@@ -125,6 +128,20 @@
         img: './assets/montoya/card_otaku_shelf.png',
         desc: 'An engaging community platform and digital catalog tailored for anime and manga enthusiasts, featuring curated lists, personal review tracking, responsive layouts, and modern Japanese pop-culture UI design.',
         tech: ['React', 'TypeScript', 'UI/UX Design', 'AniList API', 'Figma Prototype']
+      },
+      'visual-aide': {
+        title: 'Visual Aide Web Extension',
+        tag: 'VISUAL AIDE WEB EXTENSION • Dyslexia reading assistant.',
+        img: './assets/montoya/card_visual_aide.png',
+        desc: 'An accessibility-focused browser extension engineered to enhance web reading comprehension for individuals with dyslexia. Features OpenDyslexic typography switching, custom contrast overlays, bionic reading mode, and integrated text-to-speech comprehension tools.',
+        tech: ['JavaScript', 'Chrome Extension API', 'Accessibility (a11y)', 'UI/UX Design', 'Text-to-Speech']
+      },
+      'about-me': {
+        title: 'Ricky Andrew Montoya',
+        tag: 'ARCHON\'S PROFILE • CREATIVE TECHNOLOGIST & UI/UX DESIGNER',
+        img: './assets/montoya/portrait_geo.png',
+        desc: 'The steadfast bedrock and creative visionary of Group 4. Specializing in intuitive UI/UX design, full-stack assistive web systems, and rich visual storytelling. Blends geospatial informatics and graphic arts with the enduring stability and golden warmth of the Liyue Geo aesthetic.',
+        tech: ['UI/UX Design', 'Full-Stack Development', 'Graphic Design & Illustration', 'React / Next.js', 'GIS & Geospatial Analysis', 'Accessibility (a11y)']
       }
     };
 
@@ -246,8 +263,8 @@
       document.body.style.overflow = '';
     }
 
-    // Attach click events to project cards
-    document.querySelectorAll('.hotspot-card').forEach(card => {
+    // Attach click events to project cards and About Me
+    document.querySelectorAll('.hotspot-card, .hotspot-about-me').forEach(card => {
       card.addEventListener('click', () => {
         const projId = card.getAttribute('data-project');
         openProjectModal(projId);
