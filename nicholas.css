@@ -212,8 +212,29 @@ body.nicholas-portfolio-body {
 }
 
 /* =======================================================
-   4. PROJECT CARD HOTSPOTS (3-2-1 STAGGERED GRID)
+   4. ABOUT ME & PROJECT CARD HOTSPOTS
    ======================================================= */
+/* About Me Hotspot Button */
+.hotspot-about-me {
+  left: 35.830%;
+  top: 59.935%;
+  width: 28.366%;
+  height: 3.150%;
+  border-radius: 36px;
+  border: 2px solid transparent;
+}
+
+.hotspot-about-me:hover {
+  border-color: rgba(100, 181, 246, 0.85);
+  background: rgba(0, 118, 222, 0.22);
+  box-shadow: 0 0 28px rgba(0, 118, 222, 0.8), 0 0 45px rgba(100, 181, 246, 0.55), inset 0 0 16px rgba(100, 181, 246, 0.4);
+  transform: translateY(-3px) scale(1.025);
+}
+
+.hotspot-about-me:active {
+  transform: scale(0.98);
+}
+
 .hotspot-card {
   border-radius: 14px;
 }
@@ -232,7 +253,7 @@ body.nicholas-portfolio-body {
 .hotspot-card-closed-open {
   left: 13.616%;
   top: 69.347%;
-  width: 23.504%;
+  width: 23.494%;
   height: 8.505%;
 }
 
@@ -248,30 +269,38 @@ body.nicholas-portfolio-body {
 .hotspot-card-eclipse {
   left: 62.997%;
   top: 69.360%;
-  width: 23.504%;
+  width: 23.494%;
   height: 8.505%;
 }
 
 /* Card 4: Ecoality */
 .hotspot-card-ecoality {
-  left: 25.320%;
-  top: 78.406%;
+  left: 13.577%;
+  top: 78.308%;
   width: 23.504%;
   height: 8.505%;
 }
 
 /* Card 5: CyberEdge Industries */
 .hotspot-card-cyberedge {
-  left: 51.205%;
-  top: 78.406%;
+  left: 38.780%;
+  top: 78.308%;
   width: 23.504%;
   height: 8.505%;
 }
 
 /* Card 6: Monté Oro Atelier */
 .hotspot-card-monte-oro {
-  left: 38.263%;
-  top: 87.105%;
+  left: 63.055%;
+  top: 78.308%;
+  width: 23.504%;
+  height: 8.505%;
+}
+
+/* Card 7: Visual Aide Web Extension */
+.hotspot-card-visual-aide {
+  left: 38.799%;
+  top: 87.255%;
   width: 23.504%;
   height: 8.505%;
 }
@@ -281,10 +310,10 @@ body.nicholas-portfolio-body {
    ======================================================= */
 /* Back Button (Bottom-Left Stylized Arrow) */
 .hotspot-back-btn {
-  left: 5.661%;
-  top: 97.251%;
-  width: 4.685%;
-  height: 2.062%;
+  left: 6.032%;
+  top: 97.431%;
+  width: 3.953%;
+  height: 1.774%;
   border-radius: 50%;
 }
 
@@ -315,26 +344,26 @@ body.nicholas-portfolio-body {
 
 /* Email Icon */
 .hotspot-footer-email {
-  left: 81.991%;
-  top: 97.723%;
-  width: 2.440%;
-  height: 1.117%;
+  left: 82.186%;
+  top: 97.848%;
+  width: 2.108%;
+  height: 0.928%;
 }
 
 /* LinkedIn Icon */
 .hotspot-footer-linkedin {
-  left: 84.919%;
-  top: 97.723%;
-  width: 2.440%;
-  height: 1.117%;
+  left: 85.027%;
+  top: 97.848%;
+  width: 2.118%;
+  height: 0.936%;
 }
 
 /* GitHub Icon */
 .hotspot-footer-github {
-  left: 87.750%;
-  top: 97.723%;
-  width: 2.440%;
-  height: 1.117%;
+  left: 87.897%;
+  top: 97.848%;
+  width: 2.118%;
+  height: 0.936%;
 }
 
 /* =======================================================
