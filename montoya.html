@@ -81,7 +81,49 @@
 
   </main>
 
-  <!-- ==================== 4. PROJECT DETAIL MODAL ==================== -->
+  <!-- ==================== 4. ABOUT ME ARCHIVAL BOOK MODAL ==================== -->
+  <div class="about-me-modal-backdrop" id="about-me-modal" aria-hidden="true" role="dialog" aria-label="About Ricky Andrew Montoya Journal">
+    <div class="about-me-book-container">
+      <!-- Upper-Left Left-Pointing Arrow: Back Button -->
+      <button type="button" class="book-heatmap book-back-btn" id="book-back-btn" aria-label="Back to Portfolio" title="Back • Return to Portfolio"></button>
+      
+      <!-- Book Mockup Image -->
+      <picture>
+        <source srcset="./assets/montoya/about_me_book.webp" type="image/webp">
+        <img src="./assets/montoya/about_me_book.png" alt="Ricky Andrew Montoya • Liyue Geo Archival Journal" class="about-me-book-image" loading="eager">
+      </picture>
+
+      <!-- Heatmaps / Hotspots Over the Book -->
+      <!-- Left Page: Liyue Geo Emblem Portrait -->
+      <button type="button" class="book-heatmap book-heatmap-portrait" id="book-hotspot-portrait" aria-label="Liyue Geo Portrait • Ricky Andrew Montoya" title="Ricky Andrew Montoya • Liyue Geo Architect"></button>
+
+      <!-- Left Page: Geo Element Badge -->
+      <button type="button" class="book-heatmap book-heatmap-geo" id="book-hotspot-geo" aria-label="Geo Vision" title="Liyue Geo Vision • Element of Contracts & Solid Foundations"></button>
+
+      <!-- Right Page: Academic Affiliation • TUP-Manila -->
+      <a href="https://www.tup.edu.ph" target="_blank" rel="noopener noreferrer" class="book-heatmap book-heatmap-tup" id="book-hotspot-tup" aria-label="Technological University of the Philippines Manila" title="TUP-Manila • Technological University of the Philippines"></a>
+
+      <!-- Right Page Projects Mentioned in Bio -->
+      <!-- 1. Full-Stack Web Platforms (Pholaris) Spans Line 7 & Line 8 -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-pholaris-1" data-project="pholaris" aria-label="Open Pholaris Project Details" title="View Project • Pholaris (Full-Stack Web Platform)"></button>
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-pholaris-2" data-project="pholaris" aria-label="Open Pholaris Project Details" title="View Project • Pholaris (Full-Stack Web Platform)"></button>
+
+      <!-- 2. Flood Dashboards (Manila Flood Dashboard) Line 8 -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-manila-flood" data-project="manila-flood" aria-label="Open Manila Flood Dashboard Details" title="View Project • Manila Flood Dashboard"></button>
+
+      <!-- 3. Event Pubmats (Line 9) -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-pubmat" data-pubmat="1" aria-label="Open Event Pubmat Artwork Details" title="View Pubmat • Event Publication Material"></button>
+
+      <!-- 4. Mascots (Line 9) -->
+      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-mascot" data-pubmat="15" aria-label="Open Mascot & Sticker Designs Details" title="View Mascots • Mascot & Sticker Designs"></button>
+
+      <!-- On-Book Bookmark Clasp Close Area -->
+      <button type="button" class="book-heatmap book-heatmap-clasp" id="book-hotspot-clasp" aria-label="Close Journal Clasp" title="Close Journal"></button>
+
+    </div>
+  </div>
+
+  <!-- ==================== 5. PROJECT DETAIL MODAL ==================== -->
   <div class="project-modal-backdrop" id="project-modal" aria-hidden="true" role="dialog">
     <div class="project-modal-card">
       <button class="modal-close-btn" id="modal-close-btn" aria-label="Close Modal">✕</button>
@@ -263,8 +305,81 @@
       document.body.style.overflow = '';
     }
 
-    // Attach click events to project cards and About Me
-    document.querySelectorAll('.hotspot-card, .hotspot-about-me').forEach(card => {
+    // ==================== ABOUT ME ARCHIVAL JOURNAL MODAL CONTROL ====================
+    const aboutMeModal = document.getElementById('about-me-modal');
+    const bookBackBtn = document.getElementById('book-back-btn');
+    const bookClasp = document.getElementById('book-hotspot-clasp');
+
+    function openAboutMeModal() {
+      playGeoChime();
+      if (aboutMeModal) {
+        aboutMeModal.classList.add('active');
+        aboutMeModal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeAboutMeModal() {
+      if (aboutMeModal) {
+        aboutMeModal.classList.remove('active');
+        aboutMeModal.setAttribute('aria-hidden', 'true');
+        if (!modal.classList.contains('active')) {
+          document.body.style.overflow = '';
+        }
+      }
+    }
+
+    // Attach click event specifically to About Me button
+    const aboutMeHotspot = document.getElementById('hotspot-about-me');
+    if (aboutMeHotspot) {
+      aboutMeHotspot.addEventListener('click', (e) => {
+        e.preventDefault();
+        openAboutMeModal();
+      });
+    }
+
+    // Close About Me Modal events
+    if (bookBackBtn) {
+      bookBackBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        playGeoChime();
+        closeAboutMeModal();
+      });
+    }
+    if (bookClasp) bookClasp.addEventListener('click', closeAboutMeModal);
+    if (aboutMeModal) {
+      aboutMeModal.addEventListener('click', (e) => {
+        if (e.target === aboutMeModal) {
+          closeAboutMeModal();
+        }
+      });
+    }
+
+    // Book Heatmap Project Links (Clicking project/pubmat inside book closes book and opens project/pubmat modal)
+    document.querySelectorAll('.book-heatmap-project').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const projId = btn.getAttribute('data-project');
+        const pubmatId = btn.getAttribute('data-pubmat');
+        closeAboutMeModal();
+        setTimeout(() => {
+          if (projId) {
+            openProjectModal(projId);
+          } else if (pubmatId) {
+            openPubmatModal(pubmatId);
+          }
+        }, 160);
+      });
+    });
+
+    // Book Heatmap Portrait & Geo badge chime
+    document.querySelectorAll('.book-heatmap-portrait, .book-heatmap-geo').forEach(el => {
+      el.addEventListener('click', () => {
+        playGeoChime();
+      });
+    });
+
+    // Attach click events to project cards
+    document.querySelectorAll('.hotspot-card').forEach(card => {
       card.addEventListener('click', () => {
         const projId = card.getAttribute('data-project');
         openProjectModal(projId);
@@ -287,8 +402,13 @@
     });
 
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('active')) {
-        closeProjectModal();
+      if (e.key === 'Escape') {
+        if (modal.classList.contains('active')) {
+          closeProjectModal();
+        }
+        if (aboutMeModal && aboutMeModal.classList.contains('active')) {
+          closeAboutMeModal();
+        }
       }
     });
 
