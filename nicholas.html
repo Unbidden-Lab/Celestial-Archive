@@ -65,7 +65,8 @@
   <!-- ==================== 3. ABOUT ME ARCHIVAL BOOK MODAL ==================== -->
   <div class="about-me-modal-backdrop" id="about-me-modal" aria-hidden="true" role="dialog" aria-label="About Nicholas Andrew Alcantara Journal">
     <div class="about-me-book-container">
-      <button class="about-me-close-btn" id="about-me-close-btn" aria-label="Close Journal">✕</button>
+      <!-- Upper-Left Left-Pointing Arrow: Back Button -->
+      <button type="button" class="book-heatmap book-back-btn" id="book-back-btn" aria-label="Back to Portfolio" title="Back • Return to Portfolio"></button>
       
       <!-- Book Mockup Image -->
       <picture>
@@ -258,7 +259,7 @@
 
     // ==================== ABOUT ME ARCHIVAL JOURNAL MODAL CONTROL ====================
     const aboutMeModal = document.getElementById('about-me-modal');
-    const aboutMeCloseBtn = document.getElementById('about-me-close-btn');
+    const bookBackBtn = document.getElementById('book-back-btn');
     const bookClasp = document.getElementById('book-hotspot-clasp');
 
     function openAboutMeModal() {
@@ -290,7 +291,13 @@
     }
 
     // Close About Me Modal events
-    if (aboutMeCloseBtn) aboutMeCloseBtn.addEventListener('click', closeAboutMeModal);
+    if (bookBackBtn) {
+      bookBackBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        playHydroChime();
+        closeAboutMeModal();
+      });
+    }
     if (bookClasp) bookClasp.addEventListener('click', closeAboutMeModal);
     if (aboutMeModal) {
       aboutMeModal.addEventListener('click', (e) => {
