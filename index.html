@@ -298,15 +298,19 @@
       100% { opacity: 0; transform: scale(1.75); }
     }
 
-    /* Subtle Slide 1 Controls in corner */
+    /* Subtle Slide 1 Controls in corner (Gated behind DEBUG_MODE) */
     .slide1-controls {
       position: absolute;
       bottom: 2.2rem;
       right: 2.5rem;
-      display: flex;
+      display: none;
       gap: 1rem;
       align-items: center;
       z-index: 10;
+    }
+
+    body.debug-mode .slide1-controls {
+      display: flex;
     }
 
     .btn-genshin {
@@ -1374,13 +1378,13 @@
     }
 
     /* =======================================================
-       PRESENTATION SLIDE CONTROLLER HUD
+       PRESENTATION SLIDE CONTROLLER HUD (Gated behind DEBUG_MODE)
        ======================================================= */
     .slide-hud {
       position: fixed;
       bottom: 1.5rem;
       left: 1.5rem;
-      display: flex;
+      display: none;
       align-items: center;
       gap: 0.6rem;
       background: rgba(10, 14, 25, 0.88);
@@ -1390,6 +1394,10 @@
       backdrop-filter: blur(12px);
       z-index: 9999;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    body.debug-mode .slide-hud {
+      display: flex;
     }
 
     .hud-title {
@@ -1781,6 +1789,31 @@
        JAVASCRIPT LOGIC
        ======================================================= -->
   <script>
+    /* Debug Mode: gates the bottom slide switcher bar & replay/skip buttons (default: false) */
+    const DEBUG_MODE = false;
+
+    function applyDebugMode(enabled) {
+      if (document.body) {
+        document.body.classList.toggle('debug-mode', enabled);
+      }
+      const hud = document.querySelector('.slide-hud');
+      if (hud) hud.style.display = enabled ? 'flex' : 'none';
+      const slide1Controls = document.querySelector('.slide1-controls');
+      if (slide1Controls) slide1Controls.style.display = enabled ? 'flex' : 'none';
+    }
+
+    // Initialize debug mode state (supports DEBUG_MODE flag or ?debug=true in URL)
+    const isDebugActive = DEBUG_MODE || (new URLSearchParams(window.location.search).get('debug') === 'true');
+    if (isDebugActive) {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => applyDebugMode(true));
+      } else {
+        applyDebugMode(true);
+      }
+    }
+    window.DEBUG_MODE = DEBUG_MODE;
+    window.setDebugMode = applyDebugMode;
+
     /* Global State */
     let currentSlide = 'slide-1';
     let audioEnabled = true;
