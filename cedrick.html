@@ -127,6 +127,24 @@
       <div class="modal-tech-stack" id="modal-tech-stack">
         <!-- Injected via JavaScript -->
       </div>
+
+      <!-- External Destination Notice -->
+      <div class="modal-redirect-notice" id="modal-redirect-notice">
+        <div class="redirect-notice-header">
+          <span class="redirect-icon">✦</span>
+          <span class="redirect-notice-title">External Destination Notice</span>
+        </div>
+        <p class="redirect-notice-desc" id="modal-redirect-desc">
+          You are about to visit an external website (<strong id="modal-platform">GitHub</strong>) to access the project repository/prototype.
+        </p>
+        <div class="redirect-url-box" id="modal-redirect-url">https://github.com/sedoriko/Luntian_Website</div>
+      </div>
+
+      <!-- Action Buttons: Back & Proceed -->
+      <div class="modal-actions">
+        <button type="button" class="btn-modal-action btn-modal-back" id="modal-back-btn">← Back</button>
+        <a href="#" target="_blank" rel="noopener noreferrer" class="btn-modal-action btn-modal-proceed" id="modal-proceed-btn">Proceed ➔</a>
+      </div>
     </div>
   </div>
 
@@ -139,42 +157,60 @@
         tag: 'LUNTIAN FLOWER SHOP • Full-stack e-commerce web platform.',
         img: './assets/cedrick/card_luntian.png',
         desc: 'A modern full-stack e-commerce web platform for floral arrangements and botanical gifts, featuring bespoke UI/UX design, interactive product catalogs, seamless cart management, and secure checkout integration.',
-        tech: ['Next.js', 'React', 'Tailwind CSS', 'Node.js', 'Stripe API', 'PostgreSQL']
+        tech: ['Next.js', 'React', 'Tailwind CSS', 'Node.js', 'Stripe API', 'PostgreSQL'],
+        url: 'https://github.com/sedoriko/Luntian_Website',
+        platform: 'GitHub',
+        type: 'repository & web platform'
       },
       'maternal-health': {
         title: 'PH Maternal Health Dashboard',
         tag: 'PH MATERNAL HEALTH DASHBOARD • Responsive Philippine maternal mortality data dashboard',
         img: './assets/cedrick/card_maternal_health.png',
         desc: 'An impactful responsive health data visualization platform monitoring Philippine maternal mortality rates and regional healthcare indices, enabling epidemiological insights and policy awareness through interactive geospatial maps and charts.',
-        tech: ['Data Analytics', 'Python', 'D3.js / Chart.js', 'GIS Mapping', 'UI/UX Design']
+        tech: ['Data Analytics', 'Python', 'D3.js / Chart.js', 'GIS Mapping', 'UI/UX Design'],
+        url: 'https://github.com/sedoriko/Maternal-Health-Dashboard',
+        platform: 'GitHub',
+        type: 'repository & dashboard'
       },
       'closed-open': {
         title: 'Closed;Open',
         tag: 'CLOSED:OPEN • Narrative game feat. Ethan & Noah.',
         img: './assets/cedrick/card_closed_open.png',
         desc: 'An evocative narrative game exploring branching choices, character relationships, and emotional storytelling featuring protagonists Ethan & Noah, developed with customized interactive dialogue mechanics.',
-        tech: ['Unity', 'C#', 'Narrative Design', 'Figma', 'Digital Art']
+        tech: ['Unity', 'C#', 'Narrative Design', 'Figma', 'Digital Art'],
+        url: 'https://sirdroffilc.itch.io/closedopen',
+        platform: 'itch.io',
+        type: 'playable game'
       },
       'ecoality': {
         title: 'Ecoality',
         tag: 'ECOALITY • HAWK-A-THON • Hackathon UI/UX prototype designed in Figma.',
         img: './assets/cedrick/card_ecoality.png',
         desc: 'Award-winning environmental tracking application prototype designed for the Hawk-A-Thon hackathon, empowering communities through gamified ecological milestones and carbon reduction analytics.',
-        tech: ['UI/UX Design', 'Figma Prototype', 'Design Systems', 'User Research', 'Sustainability']
+        tech: ['UI/UX Design', 'Figma Prototype', 'Design Systems', 'User Research', 'Sustainability'],
+        url: 'https://www.figma.com/proto/0XxYzftWdC86WcGl4fIVoZ/ECOality?node-id=16-63&starting-point-node-id=141%3A543&t=QkApSxORFn1VQNYg-1',
+        platform: 'Figma',
+        type: 'interactive prototype'
       },
       'otaku-shelf': {
         title: 'Otaku Shelf',
         tag: 'OTAKU SHELF • Engaging, intuitive UI/UX platform for anime and manga enthusiasts',
         img: './assets/cedrick/card_otaku_shelf.png',
         desc: 'A community-focused web platform designed for anime and manga enthusiasts to track watchlists, share curated reviews, and discover seasonal releases through an engaging and intuitive user interface.',
-        tech: ['React', 'TypeScript', 'UI/UX Design', 'Anime/Manga API', 'CSS Grid']
+        tech: ['React', 'TypeScript', 'UI/UX Design', 'Anime/Manga API', 'CSS Grid'],
+        url: 'https://www.figma.com/design/HxTXnoAnc3iSUuUHAcYBqw/OTAKU-SHELF?node-id=0-1&p=f',
+        platform: 'Figma',
+        type: 'design & prototype'
       },
       'visual-aide': {
         title: 'Visual Aide Web Extension',
         tag: 'VISUAL AIDE WEB EXTENSION • Dyslexia reading assistant.',
         img: './assets/cedrick/card_visual_aide.png',
         desc: 'An accessibility-focused browser extension engineered to enhance web reading comprehension for individuals with dyslexia. Features OpenDyslexic typography switching, custom contrast overlays, bionic reading mode, and integrated text-to-speech comprehension tools.',
-        tech: ['JavaScript', 'Chrome Extension API', 'Accessibility (a11y)', 'UI/UX Design', 'Text-to-Speech']
+        tech: ['JavaScript', 'Chrome Extension API', 'Accessibility (a11y)', 'UI/UX Design', 'Text-to-Speech'],
+        url: 'https://github.com/Unbidden-Lab/Visual-Aide-Extension',
+        platform: 'GitHub',
+        type: 'repository & web extension'
       },
       'about-me': {
         title: 'John Cedrick Dela Corta',
@@ -231,6 +267,11 @@
     const modalTag = document.getElementById('modal-tag');
     const modalBody = document.getElementById('modal-body');
     const modalTechStack = document.getElementById('modal-tech-stack');
+    const modalBackBtn = document.getElementById('modal-back-btn');
+    const modalProceedBtn = document.getElementById('modal-proceed-btn');
+    const modalRedirectNotice = document.getElementById('modal-redirect-notice');
+    const modalRedirectDesc = document.getElementById('modal-redirect-desc');
+    const modalRedirectUrl = document.getElementById('modal-redirect-url');
 
     function openProjectModal(projectId) {
       const data = projectsData[projectId];
@@ -250,6 +291,25 @@
         modalTechStack.appendChild(chip);
       });
 
+      // External redirect information
+      if (data.url) {
+        if (modalRedirectNotice) modalRedirectNotice.style.display = 'block';
+        if (modalRedirectDesc) {
+          modalRedirectDesc.innerHTML = `You are about to visit an external website (<strong>${data.platform || 'External Platform'}</strong>) to access the ${data.type || 'project'} for <strong>${data.title}</strong>.`;
+        }
+        if (modalRedirectUrl) {
+          modalRedirectUrl.textContent = data.url;
+          modalRedirectUrl.title = data.url;
+        }
+        if (modalProceedBtn) {
+          modalProceedBtn.href = data.url;
+          modalProceedBtn.style.display = 'inline-flex';
+        }
+      } else {
+        if (modalRedirectNotice) modalRedirectNotice.style.display = 'none';
+        if (modalProceedBtn) modalProceedBtn.style.display = 'none';
+      }
+
       playElectroChime();
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
@@ -260,6 +320,19 @@
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+    }
+
+    if (modalBackBtn) {
+      modalBackBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeProjectModal();
+      });
+    }
+
+    if (modalProceedBtn) {
+      modalProceedBtn.addEventListener('click', () => {
+        setTimeout(closeProjectModal, 150);
+      });
     }
 
     // ==================== ABOUT ME ARCHIVAL JOURNAL MODAL CONTROL ====================
