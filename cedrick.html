@@ -63,46 +63,74 @@
 
   <!-- ==================== 3. ABOUT ME ARCHIVAL BOOK MODAL ==================== -->
   <div class="about-me-modal-backdrop" id="about-me-modal" aria-hidden="true" role="dialog" aria-label="About John Cedrick Dela Corta Journal">
-    <div class="about-me-book-container">
-      <!-- Upper-Left Left-Pointing Arrow: Back Button -->
-      <button type="button" class="book-heatmap book-back-btn" id="book-back-btn" aria-label="Back to Portfolio" title="Back • Return to Portfolio"></button>
+    <div class="about-me-book-container" id="about-me-book-container" data-page="1">
       
-      <!-- Book Mockup Image -->
-      <picture>
-        <source srcset="./assets/cedrick/about_me_book.webp" type="image/webp">
-        <img src="./assets/cedrick/about_me_book.png" alt="John Cedrick Dela Corta • Inazuma Electro Archival Journal" class="about-me-book-image" loading="eager">
-      </picture>
+      <!-- ================= PAGE 1: ABOUT ME ================= -->
+      <div class="book-page-view book-page-1">
+        <!-- Upper-Left Left-Pointing Arrow: Back Button (Returns to Portfolio) -->
+        <button type="button" class="book-heatmap book-back-btn" id="book-back-btn" aria-label="Back to Portfolio" title="Back • Return to Portfolio"></button>
 
-      <!-- Heatmaps / Hotspots Over the Book -->
-      <!-- Left Page: Inazuma Electro Portrait -->
-      <button type="button" class="book-heatmap book-heatmap-portrait" id="book-hotspot-portrait" aria-label="Inazuma Electro Portrait • John Cedrick Dela Corta" title="John Cedrick Dela Corta • Inazuma Electro Systems Architect"></button>
+        <!-- Upper-Right Right-Pointing Arrow: Next Button (Navigates to Page 2: Experiences) -->
+        <button type="button" class="book-heatmap book-next-btn" id="book-next-btn" aria-label="Next Page • Experiences" title="Next • View Experiences"></button>
+        
+        <!-- Book Mockup Image (Page 1) -->
+        <picture>
+          <source srcset="./assets/cedrick/about_me_book.webp" type="image/webp">
+          <img src="./assets/cedrick/about_me_book.png" alt="John Cedrick Dela Corta • Inazuma Electro Archival Journal" class="about-me-book-image" loading="eager">
+        </picture>
 
-      <!-- Left Page: Electro Element Badge -->
-      <button type="button" class="book-heatmap book-heatmap-electro" id="book-hotspot-electro" aria-label="Electro Vision" title="Inazuma Electro Vision • Element of Eternity & Systems Architecture"></button>
+        <!-- Heatmaps / Hotspots Over the Book -->
+        <!-- Left Page: Inazuma Electro Portrait -->
+        <button type="button" class="book-heatmap book-heatmap-portrait" id="book-hotspot-portrait" aria-label="Inazuma Electro Portrait • John Cedrick Dela Corta" title="John Cedrick Dela Corta • Inazuma Electro Systems Architect"></button>
 
-      <!-- Right Page: Academic Affiliation • TUP-Manila -->
-      <a href="https://www.tup.edu.ph" target="_blank" rel="noopener noreferrer" class="book-heatmap book-heatmap-tup" id="book-hotspot-tup" aria-label="Technological University of the Philippines Manila" title="TUP-Manila • Technological University of the Philippines"></a>
+        <!-- Left Page: Electro Element Badge -->
+        <button type="button" class="book-heatmap book-heatmap-electro" id="book-hotspot-electro" aria-label="Electro Vision" title="Inazuma Electro Vision • Element of Eternity & Systems Architecture"></button>
 
-      <!-- Right Page Projects Mentioned in Bio -->
-      <!-- 1. Luntian Flower Shop -->
-      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-luntian" data-project="luntian" aria-label="Open Luntian Flower Shop Project Details" title="View Project • Luntian Flower Shop (Full-Stack E-Commerce)"></button>
+        <!-- Right Page: Academic Affiliation • TUP-Manila -->
+        <a href="https://www.tup.edu.ph" target="_blank" rel="noopener noreferrer" class="book-heatmap book-heatmap-tup" id="book-hotspot-tup" aria-label="Technological University of the Philippines Manila" title="TUP-Manila • Technological University of the Philippines"></a>
 
-      <!-- 2. Otaku Shelf (Spans Line 4 & Line 5) -->
-      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-otaku-1" data-project="otaku-shelf" aria-label="Open Otaku Shelf Project Details" title="View Project • Otaku Shelf"></button>
-      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-otaku-2" data-project="otaku-shelf" aria-label="Open Otaku Shelf Project Details" title="View Project • Otaku Shelf"></button>
+        <!-- Right Page Projects Mentioned in Bio -->
+        <!-- 1. Luntian Flower Shop -->
+        <button type="button" class="book-heatmap book-heatmap-project book-heatmap-luntian" data-project="luntian" aria-label="Open Luntian Flower Shop Project Details" title="View Project • Luntian Flower Shop (Full-Stack E-Commerce)"></button>
 
-      <!-- 3. Closed:Open -->
-      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-closed-open" data-project="closed-open" aria-label="Open Closed;Open Project Details" title="View Project • Closed;Open (Narrative Game)"></button>
+        <!-- 2. Otaku Shelf (Spans Line 4 & Line 5) -->
+        <button type="button" class="book-heatmap book-heatmap-project book-heatmap-otaku-1" data-project="otaku-shelf" aria-label="Open Otaku Shelf Project Details" title="View Project • Otaku Shelf"></button>
+        <button type="button" class="book-heatmap book-heatmap-project book-heatmap-otaku-2" data-project="otaku-shelf" aria-label="Open Otaku Shelf Project Details" title="View Project • Otaku Shelf"></button>
 
-      <!-- 4. PH Maternal Health Dashboard (Spans Line 5 & Line 6) -->
-      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-maternal-1" data-project="maternal-health" aria-label="Open PH Maternal Health Dashboard Details" title="View Project • PH Maternal Health Dashboard"></button>
-      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-maternal-2" data-project="maternal-health" aria-label="Open PH Maternal Health Dashboard Details" title="View Project • PH Maternal Health Dashboard"></button>
+        <!-- 3. Closed:Open -->
+        <button type="button" class="book-heatmap book-heatmap-project book-heatmap-closed-open" data-project="closed-open" aria-label="Open Closed;Open Project Details" title="View Project • Closed;Open (Narrative Game)"></button>
 
-      <!-- 5. Visual Aide -->
-      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-visual-aide" data-project="visual-aide" aria-label="Open Visual Aide Web Extension Details" title="View Project • Visual Aide Web Extension"></button>
+        <!-- 4. PH Maternal Health Dashboard (Spans Line 5 & Line 6) -->
+        <button type="button" class="book-heatmap book-heatmap-project book-heatmap-maternal-1" data-project="maternal-health" aria-label="Open PH Maternal Health Dashboard Details" title="View Project • PH Maternal Health Dashboard"></button>
+        <button type="button" class="book-heatmap book-heatmap-project book-heatmap-maternal-2" data-project="maternal-health" aria-label="Open PH Maternal Health Dashboard Details" title="View Project • PH Maternal Health Dashboard"></button>
 
-      <!-- On-Book Bookmark Clasp Close Area -->
-      <button type="button" class="book-heatmap book-heatmap-clasp" id="book-hotspot-clasp" aria-label="Close Journal Clasp" title="Close Journal"></button>
+        <!-- 5. Visual Aide -->
+        <button type="button" class="book-heatmap book-heatmap-project book-heatmap-visual-aide" data-project="visual-aide" aria-label="Open Visual Aide Web Extension Details" title="View Project • Visual Aide Web Extension"></button>
+
+        <!-- On-Book Bookmark Clasp Close Area -->
+        <button type="button" class="book-heatmap book-heatmap-clasp" id="book-hotspot-clasp" aria-label="Close Journal Clasp" title="Close Journal"></button>
+      </div>
+
+      <!-- ================= PAGE 2: EXPERIENCES ================= -->
+      <div class="book-page-view book-page-2">
+        <!-- Upper-Left Left-Pointing Arrow: Previous Button (Navigates to Page 1: About Me) -->
+        <button type="button" class="book-heatmap book-prev-btn" id="book-prev-btn" aria-label="Previous Page • About Me" title="Previous • Return to About Me"></button>
+
+        <!-- Book Mockup Image (Page 2) -->
+        <picture>
+          <source srcset="./assets/cedrick/about_me_experiences.webp" type="image/webp">
+          <img src="./assets/cedrick/about_me_experiences.png" alt="John Cedrick Dela Corta • Experiences Archival Journal" class="about-me-book-image" loading="lazy">
+        </picture>
+
+        <!-- Left Page: Inazuma Electro Portrait (Page 2) -->
+        <button type="button" class="book-heatmap book-heatmap-portrait" id="book-hotspot-portrait-p2" aria-label="Inazuma Electro Portrait • John Cedrick Dela Corta" title="John Cedrick Dela Corta • Inazuma Electro Systems Architect"></button>
+
+        <!-- Left Page: Electro Element Badge (Page 2) -->
+        <button type="button" class="book-heatmap book-heatmap-electro" id="book-hotspot-electro-p2" aria-label="Electro Vision" title="Inazuma Electro Vision • Element of Eternity & Systems Architecture"></button>
+
+        <!-- On-Book Bookmark Clasp Close Area (Page 2) -->
+        <button type="button" class="book-heatmap book-heatmap-clasp" id="book-hotspot-clasp-p2" aria-label="Close Journal Clasp" title="Close Journal"></button>
+      </div>
 
     </div>
   </div>
@@ -337,11 +365,22 @@
 
     // ==================== ABOUT ME ARCHIVAL JOURNAL MODAL CONTROL ====================
     const aboutMeModal = document.getElementById('about-me-modal');
+    const bookContainer = document.getElementById('about-me-book-container') || document.querySelector('.about-me-book-container');
     const bookBackBtn = document.getElementById('book-back-btn');
+    const bookNextBtn = document.getElementById('book-next-btn');
+    const bookPrevBtn = document.getElementById('book-prev-btn');
     const bookClasp = document.getElementById('book-hotspot-clasp');
+    const bookClaspP2 = document.getElementById('book-hotspot-clasp-p2');
+
+    function setBookPage(pageNumber) {
+      if (bookContainer) {
+        bookContainer.setAttribute('data-page', String(pageNumber));
+      }
+    }
 
     function openAboutMeModal() {
       playElectroChime();
+      setBookPage(1);
       if (aboutMeModal) {
         aboutMeModal.classList.add('active');
         aboutMeModal.setAttribute('aria-hidden', 'false');
@@ -353,6 +392,7 @@
       if (aboutMeModal) {
         aboutMeModal.classList.remove('active');
         aboutMeModal.setAttribute('aria-hidden', 'true');
+        setTimeout(() => setBookPage(1), 350);
         if (!modal.classList.contains('active')) {
           document.body.style.overflow = '';
         }
@@ -368,6 +408,23 @@
       });
     }
 
+    // Page navigation between Page 1 and Page 2
+    if (bookNextBtn) {
+      bookNextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        playElectroChime();
+        setBookPage(2);
+      });
+    }
+
+    if (bookPrevBtn) {
+      bookPrevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        playElectroChime();
+        setBookPage(1);
+      });
+    }
+
     // Close About Me Modal events
     if (bookBackBtn) {
       bookBackBtn.addEventListener('click', (e) => {
@@ -377,6 +434,7 @@
       });
     }
     if (bookClasp) bookClasp.addEventListener('click', closeAboutMeModal);
+    if (bookClaspP2) bookClaspP2.addEventListener('click', closeAboutMeModal);
     if (aboutMeModal) {
       aboutMeModal.addEventListener('click', (e) => {
         if (e.target === aboutMeModal) {

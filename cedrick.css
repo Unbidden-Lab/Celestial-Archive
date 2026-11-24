@@ -638,6 +638,26 @@ body.cedrick-portfolio-body {
   transform: translateY(0) scale(1);
 }
 
+/* Multi-page Book Navigation */
+.book-page-view {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.32s cubic-bezier(0.2, 0.8, 0.3, 1), transform 0.32s cubic-bezier(0.2, 0.8, 0.3, 1);
+  transform: scale(0.985);
+}
+
+.about-me-book-container[data-page="1"] .book-page-1,
+.about-me-book-container[data-page="2"] .book-page-2 {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
 .about-me-book-image {
   width: 100%;
   height: 100%;
@@ -668,6 +688,54 @@ body.cedrick-portfolio-body {
 }
 
 .book-back-btn:active {
+  transform: translateX(-1px) scale(0.96);
+}
+
+/* Upper-Right Right-Pointing Arrow (Next Page Button) */
+.book-next-btn {
+  left: 80.5%;
+  top: 7.8%;
+  width: 7.5%;
+  height: 10.5%;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  z-index: 60;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.book-next-btn:hover {
+  background: radial-gradient(ellipse at center, rgba(180, 70, 255, 0.45) 0%, rgba(130, 40, 220, 0.15) 75%, transparent 100%);
+  border: 1.5px solid rgba(215, 130, 255, 0.95);
+  box-shadow: 0 0 24px rgba(180, 70, 255, 0.85), inset 0 0 12px rgba(215, 130, 255, 0.5);
+  transform: translateX(4px) scale(1.08);
+}
+
+.book-next-btn:active {
+  transform: translateX(1px) scale(0.96);
+}
+
+/* Upper-Left Left-Pointing Arrow on Page 2 (Previous Page Button) */
+.book-prev-btn {
+  left: 11.8%;
+  top: 7.8%;
+  width: 7.5%;
+  height: 10.5%;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  z-index: 60;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+
+.book-prev-btn:hover {
+  background: radial-gradient(ellipse at center, rgba(180, 70, 255, 0.45) 0%, rgba(130, 40, 220, 0.15) 75%, transparent 100%);
+  border: 1.5px solid rgba(215, 130, 255, 0.95);
+  box-shadow: 0 0 24px rgba(180, 70, 255, 0.85), inset 0 0 12px rgba(215, 130, 255, 0.5);
+  transform: translateX(-4px) scale(1.08);
+}
+
+.book-prev-btn:active {
   transform: translateX(-1px) scale(0.96);
 }
 
