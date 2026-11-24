@@ -64,45 +64,73 @@
 
   <!-- ==================== 3. ABOUT ME ARCHIVAL BOOK MODAL ==================== -->
   <div class="about-me-modal-backdrop" id="about-me-modal" aria-hidden="true" role="dialog" aria-label="About Nicholas Andrew Alcantara Journal">
-    <div class="about-me-book-container">
-      <!-- Upper-Left Left-Pointing Arrow: Back Button -->
-      <button type="button" class="book-heatmap book-back-btn" id="book-back-btn" aria-label="Back to Portfolio" title="Back • Return to Portfolio"></button>
+    <div class="about-me-book-container" id="about-me-book-container" data-page="1">
       
-      <!-- Book Mockup Image -->
-      <picture>
-        <source srcset="./assets/nicholas/about_me_book.webp" type="image/webp">
-        <img src="./assets/nicholas/about_me_book.png" alt="Nicholas Andrew Alcantara • Fontaine Hydro Archival Journal" class="about-me-book-image" loading="eager">
-      </picture>
+      <!-- ================= PAGE 1: ABOUT ME ================= -->
+      <div class="book-page-view book-page-1">
+        <!-- Upper-Left Left-Pointing Arrow: Back Button (Returns to Portfolio) -->
+        <button type="button" class="book-heatmap book-back-btn" id="book-back-btn" aria-label="Back to Portfolio" title="Back • Return to Portfolio"></button>
 
-      <!-- Heatmaps / Hotspots Over the Book -->
-      <!-- Left Page: Hydro Vision Portrait -->
-      <button type="button" class="book-heatmap book-heatmap-portrait" id="book-hotspot-portrait" aria-label="Hydro Archon Portrait • Nicholas Andrew Alcantara" title="Nicholas Andrew Alcantara • Fontaine Hydro Archon"></button>
+        <!-- Upper-Right Right-Pointing Arrow: Next Button (Navigates to Page 2: Experiences) -->
+        <button type="button" class="book-heatmap book-next-btn" id="book-next-btn" aria-label="Next Page • Experiences" title="Next • View Experiences"></button>
+        
+        <!-- Book Mockup Image (Page 1) -->
+        <picture>
+          <source srcset="./assets/nicholas/about_me_book.webp" type="image/webp">
+          <img src="./assets/nicholas/about_me_book.png" alt="Nicholas Andrew Alcantara • Fontaine Hydro Archival Journal" class="about-me-book-image" loading="eager">
+        </picture>
 
-      <!-- Left Page: Hydro Element Badge -->
-      <button type="button" class="book-heatmap book-heatmap-hydro" id="book-hotspot-hydro" aria-label="Hydro Vision" title="Fontaine Hydro Vision • The Element of Justice & Fluid Adaptability"></button>
+        <!-- Heatmaps / Hotspots Over the Book -->
+        <!-- Left Page: Hydro Vision Portrait -->
+        <button type="button" class="book-heatmap book-heatmap-portrait" id="book-hotspot-portrait" aria-label="Hydro Archon Portrait • Nicholas Andrew Alcantara" title="Nicholas Andrew Alcantara • Fontaine Hydro Archon"></button>
 
-      <!-- Right Page: Academic Affiliation • TUP-Manila -->
-      <a href="https://www.tup.edu.ph" target="_blank" rel="noopener noreferrer" class="book-heatmap book-heatmap-tup" id="book-hotspot-tup" aria-label="Technological University of the Philippines Manila" title="TUP-Manila • Technological University of the Philippines"></a>
+        <!-- Left Page: Hydro Element Badge -->
+        <button type="button" class="book-heatmap book-heatmap-hydro" id="book-hotspot-hydro" aria-label="Hydro Vision" title="Fontaine Hydro Vision • The Element of Justice & Fluid Adaptability"></button>
 
-      <!-- Right Page Projects Mentioned in Bio -->
-      <!-- 1. Closed:Open -->
-      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-closed-open" data-project="closed-open" aria-label="Open Closed;Open Project Details" title="View Project • Closed;Open (Narrative Game)"></button>
+        <!-- Right Page: Academic Affiliation • TUP-Manila -->
+        <a href="https://www.tup.edu.ph" target="_blank" rel="noopener noreferrer" class="book-heatmap book-heatmap-tup" id="book-hotspot-tup" aria-label="Technological University of the Philippines Manila" title="TUP-Manila • Technological University of the Philippines"></a>
 
-      <!-- 2. Eclipse -->
-      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-eclipse" data-project="eclipse" aria-label="Open Eclipse Project Details" title="View Project • Eclipse (Global Game Jam 2026 Winner)"></button>
+        <!-- Right Page Projects Mentioned in Bio -->
+        <!-- 1. Closed:Open -->
+        <button type="button" class="book-heatmap book-heatmap-project book-heatmap-closed-open" data-project="closed-open" aria-label="Open Closed;Open Project Details" title="View Project • Closed;Open (Narrative Game)"></button>
 
-      <!-- 3. Dengue Heatmap -->
-      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-dengue" data-project="dengue-heatmap" aria-label="Open Dengue Heatmap Project Details" title="View Project • Dengue Heatmap (Spatiotemporal Analysis)"></button>
+        <!-- 2. Eclipse -->
+        <button type="button" class="book-heatmap book-heatmap-project book-heatmap-eclipse" data-project="eclipse" aria-label="Open Eclipse Project Details" title="View Project • Eclipse (Global Game Jam 2026 Winner)"></button>
 
-      <!-- 4. Monte Oro Atelier -->
-      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-monte-oro" data-project="monte-oro" aria-label="Open Monté Oro Atelier Project Details" title="View Project • Monté Oro Atelier (Luxury Brand)"></button>
+        <!-- 3. Dengue Heatmap -->
+        <button type="button" class="book-heatmap book-heatmap-project book-heatmap-dengue" data-project="dengue-heatmap" aria-label="Open Dengue Heatmap Project Details" title="View Project • Dengue Heatmap (Spatiotemporal Analysis)"></button>
 
-      <!-- 5. Visual Aide (Spans line 7 and line 8) -->
-      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-visual-aide-1" data-project="visual-aide" aria-label="Open Visual Aide Web Extension Details" title="View Project • Visual Aide Web Extension"></button>
-      <button type="button" class="book-heatmap book-heatmap-project book-heatmap-visual-aide-2" data-project="visual-aide" aria-label="Open Visual Aide Web Extension Details" title="View Project • Visual Aide Web Extension"></button>
+        <!-- 4. Monte Oro Atelier -->
+        <button type="button" class="book-heatmap book-heatmap-project book-heatmap-monte-oro" data-project="monte-oro" aria-label="Open Monté Oro Atelier Project Details" title="View Project • Monté Oro Atelier (Luxury Brand)"></button>
 
-      <!-- On-Book Bookmark Clasp Close Area -->
-      <button type="button" class="book-heatmap book-heatmap-clasp" id="book-hotspot-clasp" aria-label="Close Journal Clasp" title="Close Journal"></button>
+        <!-- 5. Visual Aide (Spans line 7 and line 8) -->
+        <button type="button" class="book-heatmap book-heatmap-project book-heatmap-visual-aide-1" data-project="visual-aide" aria-label="Open Visual Aide Web Extension Details" title="View Project • Visual Aide Web Extension"></button>
+        <button type="button" class="book-heatmap book-heatmap-project book-heatmap-visual-aide-2" data-project="visual-aide" aria-label="Open Visual Aide Web Extension Details" title="View Project • Visual Aide Web Extension"></button>
+
+        <!-- On-Book Bookmark Clasp Close Area -->
+        <button type="button" class="book-heatmap book-heatmap-clasp" id="book-hotspot-clasp" aria-label="Close Journal Clasp" title="Close Journal"></button>
+      </div>
+
+      <!-- ================= PAGE 2: EXPERIENCES ================= -->
+      <div class="book-page-view book-page-2">
+        <!-- Upper-Left Left-Pointing Arrow: Previous Button (Navigates to Page 1: About Me) -->
+        <button type="button" class="book-heatmap book-prev-btn" id="book-prev-btn" aria-label="Previous Page • About Me" title="Previous • Return to About Me"></button>
+
+        <!-- Book Mockup Image (Page 2) -->
+        <picture>
+          <source srcset="./assets/nicholas/about_me_experiences.webp" type="image/webp">
+          <img src="./assets/nicholas/about_me_experiences.png" alt="Nicholas Andrew Alcantara • Experiences Archival Journal" class="about-me-book-image" loading="lazy">
+        </picture>
+
+        <!-- Left Page: Hydro Vision Portrait (Page 2) -->
+        <button type="button" class="book-heatmap book-heatmap-portrait" id="book-hotspot-portrait-p2" aria-label="Hydro Archon Portrait • Nicholas Andrew Alcantara" title="Nicholas Andrew Alcantara • Fontaine Hydro Archon"></button>
+
+        <!-- Left Page: Hydro Element Badge (Page 2) -->
+        <button type="button" class="book-heatmap book-heatmap-hydro" id="book-hotspot-hydro-p2" aria-label="Hydro Vision" title="Fontaine Hydro Vision • The Element of Justice & Fluid Adaptability"></button>
+
+        <!-- On-Book Bookmark Clasp Close Area (Page 2) -->
+        <button type="button" class="book-heatmap book-heatmap-clasp" id="book-hotspot-clasp-p2" aria-label="Close Journal Clasp" title="Close Journal"></button>
+      </div>
 
     </div>
   </div>
@@ -335,11 +363,22 @@
 
     // ==================== ABOUT ME ARCHIVAL JOURNAL MODAL CONTROL ====================
     const aboutMeModal = document.getElementById('about-me-modal');
+    const bookContainer = document.getElementById('about-me-book-container') || document.querySelector('.about-me-book-container');
     const bookBackBtn = document.getElementById('book-back-btn');
+    const bookNextBtn = document.getElementById('book-next-btn');
+    const bookPrevBtn = document.getElementById('book-prev-btn');
     const bookClasp = document.getElementById('book-hotspot-clasp');
+    const bookClaspP2 = document.getElementById('book-hotspot-clasp-p2');
+
+    function setBookPage(pageNumber) {
+      if (bookContainer) {
+        bookContainer.setAttribute('data-page', String(pageNumber));
+      }
+    }
 
     function openAboutMeModal() {
       playHydroChime();
+      setBookPage(1);
       if (aboutMeModal) {
         aboutMeModal.classList.add('active');
         aboutMeModal.setAttribute('aria-hidden', 'false');
@@ -351,6 +390,7 @@
       if (aboutMeModal) {
         aboutMeModal.classList.remove('active');
         aboutMeModal.setAttribute('aria-hidden', 'true');
+        setTimeout(() => setBookPage(1), 350);
         if (!modal.classList.contains('active')) {
           document.body.style.overflow = '';
         }
@@ -366,6 +406,23 @@
       });
     }
 
+    // Page navigation between Page 1 and Page 2
+    if (bookNextBtn) {
+      bookNextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        playHydroChime();
+        setBookPage(2);
+      });
+    }
+
+    if (bookPrevBtn) {
+      bookPrevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        playHydroChime();
+        setBookPage(1);
+      });
+    }
+
     // Close About Me Modal events
     if (bookBackBtn) {
       bookBackBtn.addEventListener('click', (e) => {
@@ -375,6 +432,7 @@
       });
     }
     if (bookClasp) bookClasp.addEventListener('click', closeAboutMeModal);
+    if (bookClaspP2) bookClaspP2.addEventListener('click', closeAboutMeModal);
     if (aboutMeModal) {
       aboutMeModal.addEventListener('click', (e) => {
         if (e.target === aboutMeModal) {
