@@ -380,13 +380,20 @@ body.cedrick-portfolio-body {
   padding: 1.5rem;
   z-index: 2000;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.32s ease;
+  transition: opacity 0.32s ease, visibility 0.32s ease;
 }
 
 .project-modal-backdrop.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+}
+
+.project-modal-backdrop:not(.active),
+.project-modal-backdrop:not(.active) * {
+  pointer-events: none !important;
 }
 
 .project-modal-card {
@@ -614,13 +621,20 @@ body.cedrick-portfolio-body {
   padding: clamp(0.75rem, 2vw, 2rem);
   z-index: 2500;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+  transition: opacity 0.35s cubic-bezier(0.2, 0.8, 0.3, 1), visibility 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
 .about-me-modal-backdrop.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+}
+
+.about-me-modal-backdrop:not(.active),
+.about-me-modal-backdrop:not(.active) * {
+  pointer-events: none !important;
 }
 
 .about-me-book-container {
@@ -632,10 +646,12 @@ body.cedrick-portfolio-body {
   filter: drop-shadow(0 25px 65px rgba(0, 0, 0, 0.95)) drop-shadow(0 0 50px rgba(180, 70, 255, 0.35));
   transform: translateY(25px) scale(0.95);
   transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.2);
+  pointer-events: none;
 }
 
 .about-me-modal-backdrop.active .about-me-book-container {
   transform: translateY(0) scale(1);
+  pointer-events: auto;
 }
 
 /* Multi-page Book Navigation */
@@ -646,14 +662,16 @@ body.cedrick-portfolio-body {
   width: 100%;
   height: 100%;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
   transition: opacity 0.32s cubic-bezier(0.2, 0.8, 0.3, 1), transform 0.32s cubic-bezier(0.2, 0.8, 0.3, 1);
   transform: scale(0.985);
 }
 
-.about-me-book-container[data-page="1"] .book-page-1,
-.about-me-book-container[data-page="2"] .book-page-2 {
+.about-me-modal-backdrop.active .about-me-book-container[data-page="1"] .book-page-1,
+.about-me-modal-backdrop.active .about-me-book-container[data-page="2"] .book-page-2 {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
   transform: scale(1);
 }

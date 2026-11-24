@@ -365,13 +365,20 @@ body.arkin-portfolio-body {
   padding: 1.5rem;
   z-index: 2000;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.32s ease;
+  transition: opacity 0.32s ease, visibility 0.32s ease;
 }
 
 .project-modal-backdrop.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+}
+
+.project-modal-backdrop:not(.active),
+.project-modal-backdrop:not(.active) * {
+  pointer-events: none !important;
 }
 
 .project-modal-card {
@@ -602,13 +609,20 @@ body.arkin-portfolio-body {
   padding: clamp(0.75rem, 2vw, 2rem);
   z-index: 2500;
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+  transition: opacity 0.35s cubic-bezier(0.2, 0.8, 0.3, 1), visibility 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 
 .about-me-modal-backdrop.active {
   opacity: 1;
+  visibility: visible;
   pointer-events: auto;
+}
+
+.about-me-modal-backdrop:not(.active),
+.about-me-modal-backdrop:not(.active) * {
+  pointer-events: none !important;
 }
 
 .about-me-book-container {
