@@ -9,15 +9,41 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cinzel+Decorative:wght@700&family=Marcellus&family=Montserrat:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   
   <script>
-    /* Synchronously check if navigating to a specific section or returning to Celestial Archive */
+    /* Synchronously check navigation type: always return to loading screen on refresh */
     (function() {
-      var hash = window.location.hash ? window.location.hash.toLowerCase() : '';
-      var hasVisited = false;
+      var isReload = false;
       try {
-        hasVisited = sessionStorage.getItem('celestial_archive_visited') === 'true';
+        if (window.performance) {
+          var navEntries = performance.getEntriesByType('navigation');
+          if (navEntries && navEntries.length > 0 && navEntries[0].type) {
+            isReload = (navEntries[0].type === 'reload');
+          } else if (typeof performance.navigation !== 'undefined') {
+            isReload = (performance.navigation.type === 1);
+          }
+        }
       } catch (e) {}
+
+      // If the user refreshed the page, always reset to the loading screen
+      if (isReload) {
+        try {
+          sessionStorage.removeItem('celestial_archive_visited');
+        } catch (e) {}
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        if (window.location.hash) {
+          try {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+          } catch (e) {}
+        }
+        window.scrollTo(0, 0);
+        return; // Do NOT skip loading screen on reload
+      }
+
+      // If directly navigating to a targeted section (e.g. returning from a portfolio page)
+      var hash = window.location.hash ? window.location.hash.toLowerCase() : '';
       var isTargetedNav = Boolean(hash && (hash.includes('home') || hash.includes('hero') || hash.includes('traveler') || hash.includes('contact') || hash.includes('slide-3')));
-      if (isTargetedNav || hasVisited) {
+      if (isTargetedNav) {
         document.documentElement.classList.add('skip-loading-screen');
       }
     })();
@@ -2626,15 +2652,56 @@
       }
     }
 
-    function initPageRouting() {
-      const hash = window.location.hash ? window.location.hash.toLowerCase() : '';
-      let hasVisited = false;
+    function checkIsReload() {
       try {
-        hasVisited = sessionStorage.getItem('celestial_archive_visited') === 'true';
+        if (window.performance) {
+          const navEntries = performance.getEntriesByType('navigation');
+          if (navEntries && navEntries.length > 0 && navEntries[0].type) {
+            return navEntries[0].type === 'reload';
+          }
+          if (typeof performance.navigation !== 'undefined') {
+            return performance.navigation.type === 1;
+          }
+        }
       } catch (e) {}
+      return false;
+    }
+
+    function initPageRouting() {
+      const isReload = checkIsReload();
+      if (isReload) {
+        try {
+          sessionStorage.removeItem('celestial_archive_visited');
+        } catch (e) {}
+        document.documentElement.classList.remove('skip-loading-screen');
+        if ('scrollRestoration' in history) {
+          history.scrollRestoration = 'manual';
+        }
+        if (window.location.hash) {
+          try {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+          } catch (e) {}
+        }
+        window.scrollTo(0, 0);
+
+        if (fillAnimId) {
+          cancelAnimationFrame(fillAnimId);
+          fillAnimId = null;
+        }
+        if (fillTimer) {
+          clearTimeout(fillTimer);
+          fillTimer = null;
+        }
+
+        switchSlide('slide-1', false);
+        startLoadingSequence();
+        return;
+      }
+
+      const hash = window.location.hash ? window.location.hash.toLowerCase() : '';
       const isTargetedNav = Boolean(hash && (hash.includes('home') || hash.includes('hero') || hash.includes('traveler') || hash.includes('contact') || hash.includes('slide-3')));
 
-      if (isTargetedNav || hasVisited) {
+      if (isTargetedNav) {
         if (fillAnimId) {
           cancelAnimationFrame(fillAnimId);
           fillAnimId = null;
@@ -2658,6 +2725,7 @@
           }, 160);
         }
       } else {
+        switchSlide('slide-1', false);
         startLoadingSequence();
       }
     }
@@ -2679,12 +2747,7 @@
 
     // Handle back/forward cache (bfcache) navigation on mobile Safari / Chrome
     window.addEventListener('pageshow', (event) => {
-      const hash = window.location.hash ? window.location.hash.toLowerCase() : '';
-      let hasVisited = false;
-      try {
-        hasVisited = sessionStorage.getItem('celestial_archive_visited') === 'true';
-      } catch (e) {}
-      if (hasVisited || hash) {
+      if (event.persisted) {
         initPageRouting();
       }
     });
