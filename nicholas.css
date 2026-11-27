@@ -31,6 +31,26 @@
   padding: 0;
 }
 
+/* Custom Genshin Impact Star Cursor */
+html, body, *, *::before, *::after {
+  cursor: url('./assets/images/cursor_32.png') 2 2, auto;
+  cursor: -webkit-image-set(url('./assets/images/cursor_32.png') 1x, url('./assets/images/cursor_64.png') 2x) 2 2,
+          image-set(url('./assets/images/cursor_32.png') 1x, url('./assets/images/cursor_64.png') 2x) 2 2,
+          url('./assets/images/cursor_32.png') 2 2,
+          auto;
+}
+
+a, button, [role="button"], input, select, textarea, label,
+.interactive-hotspot, .hotspot-card, .hotspot-about-me, .hotspot-social, .hotspot-back-btn,
+.book-heatmap, .book-back-btn, .book-next-btn, .book-prev-btn, .modal-close-btn, .btn-modal-action,
+.nav-link, .nav-brand, [onclick], [data-project] {
+  cursor: url('./assets/images/cursor_32.png') 2 2, pointer !important;
+  cursor: -webkit-image-set(url('./assets/images/cursor_32.png') 1x, url('./assets/images/cursor_64.png') 2x) 2 2,
+          image-set(url('./assets/images/cursor_32.png') 1x, url('./assets/images/cursor_64.png') 2x) 2 2,
+          url('./assets/images/cursor_32.png') 2 2,
+          pointer !important;
+}
+
 html {
   scroll-behavior: smooth;
   background-color: var(--color-hydro-deep);

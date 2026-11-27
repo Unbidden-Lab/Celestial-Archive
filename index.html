@@ -50,6 +50,27 @@
   </script>
 
   <style>
+    /* ==================== CUSTOM GENSHIN IMPACT STAR CURSOR ==================== */
+    html, body, *, *::before, *::after {
+      cursor: url('./assets/images/cursor_32.png') 2 2, auto;
+      cursor: -webkit-image-set(url('./assets/images/cursor_32.png') 1x, url('./assets/images/cursor_64.png') 2x) 2 2,
+              image-set(url('./assets/images/cursor_32.png') 1x, url('./assets/images/cursor_64.png') 2x) 2 2,
+              url('./assets/images/cursor_32.png') 2 2,
+              auto;
+    }
+
+    a, button, [role="button"], input, select, textarea, label,
+    .btn-genshin, .interactive-hotspot, .book-heatmap, .hotspot-card, .hotspot-about-me,
+    .modal-close-btn, .btn-modal-action, .slide-nav-item, .hud-btn, .element-slot,
+    .welcome-content, .scroll-down-btn, .nav-link, .nav-brand, .traveler-card,
+    [onclick], [data-project], [tabindex]:not([tabindex="-1"]) {
+      cursor: url('./assets/images/cursor_32.png') 2 2, pointer !important;
+      cursor: -webkit-image-set(url('./assets/images/cursor_32.png') 1x, url('./assets/images/cursor_64.png') 2x) 2 2,
+              image-set(url('./assets/images/cursor_32.png') 1x, url('./assets/images/cursor_64.png') 2x) 2 2,
+              url('./assets/images/cursor_32.png') 2 2,
+              pointer !important;
+    }
+
     html {
       scroll-behavior: smooth;
       scroll-padding-top: 80px;
